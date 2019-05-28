@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Вам нужно написать функцию, которая возвращает первый не повторяющийся символ в данной строке.
+
+Например, для функции string "test" следует вернуть 'e'.
+Для функции string «teeter» должна возвращаться «r».
+
+Если строка содержит все уникальные символы, верните только первый символ строки.
+Пример: для функции «тренда» вход должен возвращать 't'
+
+Вы можете предположить, что входная строка всегда имеет ненулевую длину.
+
+<script>
+    let myStr = "teeter";
+
+    function firstNoRepeatElem(str) {
+        let arrOfRepeat = [];
+        let arrOfString = Array.from(str);
+        for (let i = 0; i < str.length; i++) {
+            for (let j = i + 1; j < str.length; j++) {
+                if (str[i] === str[j]) {
+                    arrOfRepeat.push(str[i]);
+                }
+            }
+        }
+        console.log(arrOfString);
+        console.log(arrOfRepeat);
+        for (let k = 0; k < arrOfString.length; k++) {
+            if (arrOfRepeat.indexOf(arrOfString[k]) === -1) {
+                return arrOfString[k];
+            }
+        }
+
+    }
+
+
+
+</script>
+</body>
+</html>

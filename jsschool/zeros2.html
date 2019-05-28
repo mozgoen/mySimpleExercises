@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+Your task is to implement getZerosCount function, which takes any integer number number
+(1 <= number <= 10^8) as only argument.
+You should calculate how many zeros in the end of result number, which is factorial of number
+
+For example:
+
+const zerosCount = getZerosCount(10); // Factorial of 10 is 3628800
+console.log(zerosCount); // 2. Because there is 2 *tail* zeros in number 3628800
+
+
+Important!
+Do not try to calculate factorial! First - you will not get exact answer on big numbers.
+Second - it could take several years to calculate factorial on big integers!
+Try to think up your awesome solution without such calculations. Good luck!
+
+
+РЕШЕНИЕ
+Количество нулей посчитивается так:
+
+K=[N /(5^1)] +  [N /(5^2)] + [N /(5^3)] +...........+  [N /(5^n)]
+
+K количество нулей в конце факторяла, N само число  факториала, а n степень числа 5.
+
+N /(5^n) деление пройзводится до того, пока
+резултат от целечисленного деления не станет ровно или меньше единицы
+
+
+it('97', () => {
+const zerosCount = getZerosCount(7576126);
+assert.equal(zerosCount, 1894026);
+});
+
+it('98', () => {
+const zerosCount = getZerosCount(97789747);
+assert.equal(zerosCount, 24447431);
+});
+
+it('99', () => {
+const zerosCount = getZerosCount(6214414);
+assert.equal(zerosCount, 1553598);
+});
+
+it('100', () => {
+const zerosCount = getZerosCount(95670627);
+assert.equal(zerosCount, 23917650);
+
+
+
+<script>
+    function getZerosCount(number) {
+        let result = 0;
+
+//        33454600000
+//        n * 2 = ....0 (25* 2 = 50) purplemath.com/modules/factzero
+//        n * 5 = ....0 (12 * 5 = 60)
+//        5, 10, 15, 25 = 5 * 5
+
+        for (let i = 5; number / i >= 1; i *= 5) {
+            result += Math.floor(number / i);
+        }
+
+        return result;
+
+
+    }
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+В этой ката вам предлагается квадратировать каждую цифру числа.
+
+Например, если мы запустим 9119 через функцию, выйдет 811181, потому что 9*9 равно 81 и 1*1 равно 1.
+
+Примечание. Функция принимает целое число и возвращает целое число
+
+
+
+<script>
+    function squareEveryDigit(num) {
+        let stringOfNumb = String(num);
+        let arrayOfNumb = [];
+        //        строку в массив
+        arrayOfNumb = Array.from(stringOfNumb);
+        console.log(arrayOfNumb);
+        for (let i = 0; i < arrayOfNumb.length; i++) {
+            arrayOfNumb[i] = arrayOfNumb[i] * arrayOfNumb[i];
+        }
+        console.log(arrayOfNumb);
+        //        из массива в строку
+        let newStr = "";
+        newStr = arrayOfNumb.join("");
+        let resultNum; resultNum = Number(newStr);
+        return resultNum;
+    }
+
+
+</script>
+</body>
+</html>

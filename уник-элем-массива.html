@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+Пусть arr – массив строк.
+Напишите функцию unique(arr), которая возвращает массив, содержащий только уникальные элементы arr.
+Например:
+function unique(arr) {
+/* ваш код */
+}
+var strings = ["кришна", "кришна", "харе", "харе",
+"харе", "харе", "кришна", "кришна", "8-()"
+];
+
+alert( unique(strings) ); // кришна, харе, 8-()
+
+<script>
+    let strings = ["кришна", "кришна", "харе", "харе", "харе", "харе", "кришна", "кришна", "8-()"];
+
+    function unique(arr) {
+//                создаем вспомогательный объект
+        let obj = {};
+//        пройдемся по массиву и сделаем элементы массива ключами для вспомогательного объекта, ключи не повторяются а значит слова не будут повторяться
+        for (let i = 0; i < arr.length; i++) {
+            let keyForObj = arr[i];
+            obj[keyForObj] = arr[i];
+        }
+        let resultArr = [];
+//        пройдемся по ключам объета и заберем их в конечный массив
+        for (let key in obj) {
+            resultArr.push(obj[key]);
+        }
+//        можно так же одним методом собрать все ключи объета в массив
+//        return Object.keys(obj);
+        return resultArr
+    }
+
+
+</script>
+
+</body>
+</html>

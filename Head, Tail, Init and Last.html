@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+λ head [1,2,3,4,5]
+1
+λ tail [1,2,3,4,5]
+[2,3,4,5]
+λ init [1,2,3,4,5]
+[1,2,3,4]
+λ last [1,2,3,4,5]
+5
+Ваша задача - реализовать эти функции на вашем языке. Убедитесь, что он не редактирует массив; что вызовет проблемы! Вот чит-лист:
+
+| ГЛАВНАЯ | <----------- ХВОСТ ------------> |
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+| <----------- INIT ------------> | ПОСЛЕДНИЕ |
+
+head [x] = x
+хвост [x] = []
+init [x] = []
+last [x] = x
+Вот как я ожидаю, что функции будут вызываться на вашем языке:
+
+головка ([1,2,3,4,5]); => 1
+Хвост ([1,2,3,4,5]); => [2,3,4,5]
+
+
+<script>
+    'use strict';
+    function head(array) {
+        return array[0];
+    }
+    function tail(array) {
+        let arrayOfTail = array.slice(1);
+        return arrayOfTail;
+    }
+    function init(array) {
+        let arrOfInit = array.slice(0, array.length - 1);
+        return arrOfInit;
+    }
+    function last(array) {
+        return array[array.length - 1];
+    }
+
+
+
+</script>
+
+</body>
+</html>

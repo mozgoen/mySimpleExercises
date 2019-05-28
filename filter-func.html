@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    [1,2,3,4].filter((num)=>{ return num > 3});
+
+
+    Array.prototype.filter = function (func) {
+        for (let i = 0; i < this.length; i++) {
+            if (!func(this[i])) {
+                this.splice(i, 1);
+                i--;
+            }
+
+        }
+        return this;
+    }
+
+</script>
+
+</body>
+</html>

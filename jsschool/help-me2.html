@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+const result = count('01', [[3, 1], [2, 1], [23, 1], [29, 1], [11, 1]]);
+assert.equal(result, 12320);
+
+
+pairs[q][0] !== pairs[w][0] и  pairs[h][0] is prime(простое) - первое число в массиве простое
+
+N = (pairs[0][0] ** pairs[0][1]) *
+(pairs[1][0] ** pairs[1][1]) *
+(pairs[2][0] ** pairs[2][1]) * /*
+..... */ *
+(pairs[pairs.length - 1][0] ** pairs[pairs.length - 1][1])
+
+
+0 <= k <= N
+
+
+k + j and N - их наибольший общий делитель 1 если s[j] === 1
+
+k + j and N - их наибольший общий делитель НЕ 1 если s[j] === 0
+
+
+
+// ... your solution
+// answer - task solution
+const result = answer % 1000000007;
+return result;
+
+
+
+<script>
+    function count(s, pairs) {
+
+        function findN(pairs) {
+            let n = 1;
+            for (let i = 0, len = pairs.length; i < len; i++) {
+                let numInDegree = pairs[i][0] ** pairs[i][1];
+                n *= numInDegree;
+            }
+            console.log('n', n);
+            return n;
+        }
+
+
+        function divisors(pairs) {
+            let arrOfDiv = [];
+            for (let i = 0, len = pairs.length; i < len; i++){
+                arrOfDiv.push(pairs[i][0]);
+            }
+            return arrOfDiv;
+        }
+
+        function checkK(s, k) {
+
+            for (let j = 0, len = s.length; j < len; j++) {
+                let current = Number(s[j]);
+
+                if (Boolean(current) === !existCommonDivisor(k + j, arrOfDivisors)) {
+
+                } else {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        function existCommonDivisor(a, arrOfDivisors) {
+            for (let i = 0, len = arrOfDivisors.length; i < len; i++) {
+                if (a % arrOfDivisors[i] === 0) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
+
+        const arrOfDivisors = divisors(pairs);
+        const n = findN(pairs);
+
+
+        let countK = 0;
+
+        for (let k = 1; k <= n; k++) {
+            if (checkK(s, k)) {
+                // console.log(k)
+                countK++;
+            }
+        }
+        console.log(countK, ' res ', countK % 1000000007);
+        return countK % 1000000007;
+    }
+
+
+
+
+</script>
+
+</body>
+</html>

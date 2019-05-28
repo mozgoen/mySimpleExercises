@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>Пример работы</h1>
+<form name="message" action="">
+  <div class="row">имя: <input type="text" name="fname"></div>
+  <div class="row">текст: <input type="text" name="msg"></div>
+  <div class="row"><input type="submit" value="отправить"></div>
+</form>
+<div id="status"></div>
+
+<script>
+    const socket = new WebSocket('ws://wsc.2123.io/');
+    let token = null;
+    let task1;
+    let task2;
+    let task3;
+    let parse = true;
+    let bits;
+    let arr;
+
+    socket.binaryType = "arraybuffer";
+//    typeof  - проверяем тип данных которые пришли
+
+
+//{message: "You successfully accept challenge", next: "arithmetic", token: "105af3e51fc6008b"}
+    const status = document.querySelector('#status');
+//    {message: "You successfully accept challenge", next: "arithmetic", token: "fb198966097fed0c"}
+
+//    {message: "You successfully accept challenge", next: "arithmetic", token: "9d53f49abdec1009"}
+
+    socket.onopen = function (event) {
+      status.innerHTML = 'соединение установлено.';
+      if (!token) {
+        socket.send(JSON.stringify({"name": "mozgoen9", "command": "challenge accepted"}));
+      }
+    };
+
+    socket.onclose = function (event) {
+      if(event.wasClean) {
+        status.innerHTML = 'соединение закрыто.';
+      } else {
+        status.innerHTML = 'соединение как-то закрыто.';
+      }
+      status.innerHTML += "<br>код: " + event.code + " причина: " + event.reason;
+
+    };
+
+    socket.onmessage = function (event) {
+      if (!parse) {
+        console.log(event.data);
+        if (bits == 8) {
+          arr = new Uint8Array(event.data);
+        } else {
+          arr = new Uint16Array(event.data);
+        }
+
+        var sum = 0;
+        for (var i = 0; i < arr.length; i++) {
+          sum += arr[i];
+        }
+        if (!task2) {
+          task2 = 1;
+          socket.send(JSON.stringify({command: "binary_arithmetic", token: token, answer: sum}));
+          parse = true;
+        }
+        return;
+      }
+      const data = JSON.parse(event.data);
+      console.log(data);
+      if (data.token) {
+        token = data.token;
+        socket.send(JSON.stringify({ "token": token, "command": 'arithmetic' }));
+      } else if (data.next) {
+
+        socket.send(JSON.stringify({ command: data.next, token: token }));
+      }
+
+      if (data.task) {
+        switch (data.name) {
+          case 'arithmetic': {
+            let str = data.task.values.join(data.task.sign);
+            socket.send(JSON.stringify({ command: "arithmetic", token: token, answer: eval(str) }));
+            break;
+          }
+          case "function_evaluation": {
+            const fun = eval(data.task.fn);
+            if (!task1) {
+
+              const ans = eval(fun)();
+              const obj = {command: "function_evaluation", token: token, answer: ans};
+              console.log({obj});
+              socket.send(JSON.stringify(obj));
+              task1 = 123;
+            }
+            break;
+          }
+          case 'binary_arithmetic': {
+            parse = false;
+            bits = data.task.bits;
+            console.log(bits);
+
+
+          }
+
+        }
+      } else {
+
+        console.log('!', data);
+      }
+    };
+
+
+    socket.onerror = function (event) {
+      status.innerHTML = 'ошибка:' + event.message;
+    };
+
+    document.forms["message"].onsubmit = function () {
+      let message = {
+        name: this.fname.value,
+        msg: this.msg.value
+
+      };
+
+      return false;
+    }
+
+</script>
+</body>
+</html>

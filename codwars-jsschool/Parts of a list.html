@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+Write a function partlist that gives all the ways to divide a list (an array) of at least two elements into two non-empty parts.
+
+Each two non empty parts will be in a pair (or an array for languages without tuples or a structin C - C: see Examples test Cases - )
+Each part will be in a string
+Elements of a pair must be in the same order as in the original array.
+Examples of returns in different languages:
+a = ["az", "toto", "picaro", "zone", "kiwi"] -->
+
+[["az", "toto picaro zone kiwi"], ["az toto", "picaro zone kiwi"], ["az toto picaro", "zone kiwi"], ["az toto picaro zone", "kiwi"]]
+
+<script>
+  let arr1 = ["az", "toto", "picaro", "zone", "kiwi"];
+
+  function dividePartlist(arr) {
+    let result = [];
+
+    for (let i = 0; i < arr.length; i++) {
+      let arrPart1 = [];
+      arrPart1[0] = "";
+
+      for (let j = 0; j <= i; j++) {
+        if (j !== i) {
+          arrPart1[0] += arr[j] + " ";
+        } else {
+          arrPart1[0] += arr[j];
+        }
+
+      }
+
+      let arrPart2 = [];
+      arrPart2[0] = "";
+
+      for (let k = i + 1; k < arr.length; k++) {
+        if (k !== arr.length - 1) {
+          arrPart2[0] += arr[k] + " ";
+        } else {
+          arrPart2[0] += arr[k];
+        }
+
+      }
+
+      if (arrPart2[0] !== "") {
+        arrPart1.push(arrPart2[0]);
+
+        result.push(arrPart1);
+      }
+
+    }
+
+    return result;
+
+  }
+
+
+//  var partlist=a=>a.map((v,i)=>[a.slice(0,i).join(' '),a.slice(i).join(' ')]).slice(1);
+
+
+
+
+  function partlist(arr) {
+    var newArray;
+    var returnArray=[];
+    for( var i=1; i<arr.length; i++){
+      newArray = [];
+      newArray.push(arr.slice(0,i).join(" "));
+      newArray.push(arr.slice(i).join(" "));
+      returnArray.push(newArray);
+    }
+
+    return returnArray;
+  }
+
+
+</script>
+
+</body>
+</html>

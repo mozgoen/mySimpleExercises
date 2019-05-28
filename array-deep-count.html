@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Array.prototype.length даст вам количество элементов верхнего уровня в массиве.
+
+Ваша задача - создать функцию deepCount, которая возвращает количество ВСЕХ элементов в массиве, включая любые внутри массивов внутреннего уровня.
+
+Например:
+
+deepCount ([1, 2, 3]);
+// >>>>> 3
+deepCount (["x", "y", ["z"]]);
+// >>>>> 4
+deepCount ([1, 2, [3, 4, [5]]]);
+// >>>>> 7
+Вход всегда будет массивом.
+
+<script>
+    'use strict';
+
+    function deepCount(arr) {
+        let count = arr.length;
+        for (let i = 0; i < arr.length; i++) {
+            let elem = arr[i];
+            if (Array.isArray(elem)) {
+                count += deepCount(elem);
+            }
+
+        }
+        return count;
+    }
+
+
+
+
+
+</script>
+
+</body>
+</html>

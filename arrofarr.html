@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Sum of differences between products and LCMs
+For example, if you are given:
+[[15,18], [4,5], [12,60]]
+
+Their product would be:
+[270, 20, 720]
+<!--умножение-->
+
+While their respective LCM would be:
+<!--наименьшее общее кратное-->
+[90, 20, 60]
+
+Thus the result should be:
+(270-90)+(20-20)+(720-60)==840
+
+
+<script>
+    array1 = [[15,18], [4,5], [12,60]];
+
+    var result1 = [];
+    var result2 = [];
+    var result = [];
+    var sumResult = 0;
+
+//    находим произведение чисел в массивах, записываем в массив result1
+    function productOfArray(arr) {
+        var sum = 0;
+        for (var i = 0; i < arr.length; i++) {
+            sum = arr[i][0] * arr[i][1];
+            result1.push(sum);
+        }
+        return result1;
+    }
+    //    находим нок чисел в массивах, записываем в массив result2
+    function findLCM(arr) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i][0] > arr[i][1]) {
+                var lcm = arr[i][0];
+            } else { lcm = arr[i][1]; }
+//            пока остаток от деление нок на первое число не будет равен 0 или на второе равен 0.
+            while (lcm % arr[i][0] !== 0 || lcm % arr[i][1] !== 0) {
+                lcm++;
+            }
+            result2.push(lcm);
+        }
+        return result2;
+    }
+
+    //    находим разницу чисел в 2 массивах, записываем в массив result, находим сумму чисел в массиве result, записываем в переменную sumResult
+    function differenceOfArray(arr) {
+       var arr1 = productOfArray(arr);
+       var arr2 = findLCM(arr);
+
+        for (var i = 0; i < arr1.length; i++) {
+            var difference = arr1[i] - arr2[i];
+            result.push(difference);
+        }
+        for (var j = 0; j < result.length; j++) {
+            sumResult += result[j];
+        }
+        return sumResult;
+    }
+
+</script>
+<!--<script src="js/jquery-2.2.3.min.js"></script>-->
+</body>
+</html>

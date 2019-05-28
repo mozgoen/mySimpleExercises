@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+РЕШЕНИЕ
+Количество нулей посчитивается так:
+
+K=[N /(5^1)] +  [N /(5^2)] + [N /(5^3)] +...........+  [N /(5^n)]
+
+K количество нулей в конце факторяла, N само число  факториала, а n степень числа 5.
+
+N /(5^n) деление пройзводится до того, пока
+резултат от целечисленного деления не станет ровно или меньше единицы
+
+
+2.
+Рассмотрим сначала, от чего зависит количество нулей на конце
+N! в десятичной системе счисления. Каждый нуль в конце числа
+возникает от произведения простых множителей 2 и 5. Таким образом,
+количество нулей на конце числа − это максимум из количества двоек
+и пятёрок в разложении числа на простые множители. А поскольку
+количество пятёрок в N! не превышает количества двоек, то
+количество нулей определяется лишь количеством пятёрок.
+Например, число 30! оканчивается 7 нулями, поскольку оно содержит
+по одной пятёрке в множителях 5, 10, 15, 20, 25, 30 и ещё одну
+дополнительную пятёрку в множителе 25. Заметим, что для
+произвольного N количество пятёрок в N! можно найти по формуле
+N div 5 + N div 25 + N div 125 + … N div 5i
+… (вычисление
+заканчиваются, когда знаменатель превысит числитель).
+Аналогичным образом можно определить количество нулей на
+конце N! и для других систем счисления. Например, запись числа 50!
+в системе с основанием 14 заканчивается 8 нулями − количество
+множителей 7: (50 div 7 + 50 div 72
+) = 8.
+Немного более сложная ситуация возникает, когда основание
+системы счисления представляет собой простое число в некоторой
+степени. Пример − основание 16 = 24
+. В таком случае найденное
+количество двоек нужно еще поделить на степень множителя.
+Например, число 10! имеет (10 div 2 + 10 div 4 + 10 div 8) = 8 двоек.
+Поскольку 8 div 4 = 2, то запись числа 10! в шестнадцатеричной
+системе имеет два нуля на конце.
+Обратим ещё внимание на основание 12. Это единственное
+основание (от 2 до 16), которое имеет в разложении разные простые
+множители, среди которых есть повторяющийся: 12 = 22
+*3. Заметим,
+что для некоторых значений N количество двоек, делённое пополам,
+может оказаться меньше количества троек, поэтому именно оно будет
+определять число нулей на конце (например, для N = 30).
+
+
+
+Task
+Your task is to implement getZerosCount function, which takes any integer number number
+(1 <= number <= 10^7) as first argument and any integer number base (2 <= base <= 256)
+as second argument. You should calculate how many zeros in the end of number,
+which is factorial of number in base base system
+
+For example:
+
+const zerosCount = getZerosCount(10, 10); // Factorial of 10 is 3628800
+and the same in 10th base system
+console.log(zerosCount); // 2. Because there is 2 *tail* zeros in number 3628800
+const zerosCount = getZerosCount(16, 16); // Factorial of 16 is 20922789888000 in 10th
+base system and *130777758000* in 16th base system
+console.log(zerosCount); // 3. Because there is 3 *tail* zeros in number *130777758000*
+
+Do not try to calculate factorial! First - you will not get exact answer on big numbers.
+Second - it could take several years to calculate factorial on big integers!
+Try to think up your awesome solution without such calculations.
+
+
+
+
+
+it('50', () => {
+const zerosCount = getZerosCount(2635454, 7);
+assert.equal(zerosCount, 439238);
+});
+
+it('51', () => {
+const zerosCount = getZerosCount(60026734, 22);
+assert.equal(zerosCount, 6002668);
+});
+
+it('52', () => {
+const zerosCount = getZerosCount(761288, 152);
+assert.equal(zerosCount, 42290);
+});
+
+<script>
+
+
+    function getZerosCount(number, base) {
+
+//      find a factor as a last element of array of simple divisors
+        let arrOfDivisors = [];
+        function findSimpleDivisors(n) {
+            let arrOfOnlySimpleDiv = [];
+            let divisor = n;
+
+            while (divisor > 0) {
+                let restOfNumb = n / divisor;
+                if (Math.floor(restOfNumb) - restOfNumb === 0) {
+                    arrOfDivisors.push(restOfNumb);
+                }
+                divisor--;
+            }
+            console.log(arrOfDivisors);
+
+            for (let i = 0; i < arrOfDivisors.length; i++) {
+                let arrOfDiv = [];
+                let count = 1;
+                let current = arrOfDivisors[i];
+
+                while (count <= current) {
+                    if (current % count === 0) {
+                        arrOfDiv.push(count);
+                    }
+                    count++;
+                }
+                if (arrOfDiv.length === 2) {
+                    arrOfOnlySimpleDiv.push(current);
+                }
+
+            }
+            console.log(arrOfOnlySimpleDiv);
+            return arrOfOnlySimpleDiv;
+        }
+
+
+
+        let arrOfOnlySimpleDiv = findSimpleDivisors(base);
+
+
+        let factor;
+
+        if (arrOfDivisors.indexOf(Math.pow(2, 5)) !== -1 && arrOfDivisors.indexOf(Math.pow(2, 4)) !== -1 && arrOfDivisors.indexOf(Math.pow(2, 3)) !== -1 && arrOfDivisors.indexOf(Math.pow(2, 2)) !== -1) {
+            factor = 2;
+        } else {
+            factor = arrOfOnlySimpleDiv[arrOfOnlySimpleDiv.length - 1];
+        }
+
+
+
+
+        let zerosCount = 0;
+        let power = 1;
+
+        while (number / (Math.pow(factor, power)) >= 1) {
+            let numbOfDivisors = Math.floor(number / (Math.pow(factor, power)));
+            zerosCount += numbOfDivisors;
+            power ++;
+        }
+
+        if (arrOfDivisors.indexOf(Math.pow(factor, 6)) !== -1) {
+            return Math.floor(zerosCount / 6);
+        } else if (arrOfDivisors.indexOf(Math.pow(factor, 5)) !== -1) {
+            return Math.floor(zerosCount / 5);
+        } else if (arrOfDivisors.indexOf(Math.pow(factor, 4)) !== -1) {
+            return Math.floor(zerosCount / 4);
+        } else if (arrOfDivisors.indexOf(Math.pow(factor, 3)) !== -1) {
+            return Math.floor(zerosCount / 3);
+        } else if (arrOfDivisors.indexOf(Math.pow(factor, 2)) !== -1) {
+            return Math.floor(zerosCount / 2);
+        }
+
+
+
+
+
+
+//        function findPower(base, factor) {
+//            let pow = 0;
+//            let curr = base;
+//            while (curr / factor >= 1) {
+//                if (curr % factor !== 0) {
+//                    return 1;
+//                }
+//
+//                curr = curr / factor;
+//                pow ++;
+//            }
+//            return pow;
+//        }
+
+
+
+
+//        let finalPow = findPower(base, factor);
+
+
+
+        return Math.floor(zerosCount);
+
+    }
+
+
+
+
+
+</script>
+
+</body>
+</html>

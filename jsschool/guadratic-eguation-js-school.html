@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+solveEquation('-200 * x^2 - 888725200 * x - 104468049705600')
+[-4322792, -120834]
+
+solveEquation('142 * x^2 - 1069080086 * x + 2011605981501984')
+[3699437, 3829296]
+
+
+const solutions = solveEquation('2 * x^2 - 10 * x + 12');
+console.log(solutions); // [2, 3]
+
+<script>
+
+    function solveEquation(equation) {
+        let strOfEquation = equation.replace(/ /g, "");
+        let arrOfEquation = strOfEquation.split("*x");
+        arrOfEquation[1] = arrOfEquation[1].substring(2);
+
+        for (let i = 0; i < arrOfEquation.length; i++) {
+            arrOfEquation[i] = Number(arrOfEquation[i]);
+        }
+
+        let discriminant = Math.pow(arrOfEquation[1],2) - 4 * arrOfEquation[0] * arrOfEquation[2];
+
+        let root1 = Math.round((-(arrOfEquation[1]) + Math.sqrt(discriminant)) / (2 * arrOfEquation[0]));
+        let root2 = Math.round((-(arrOfEquation[1]) - Math.sqrt(discriminant)) / (2 * arrOfEquation[0]));
+
+        if (root1 < root2) {
+            return [root1, root2];
+        } else {
+            return [root2, root1];
+        }
+
+    }
+
+
+
+</script>
+
+</body>
+</html>

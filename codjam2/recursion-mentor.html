@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Реализовать функцию recursion, которая получает на вход дерево представленное объектом следующей структуры:
+
+100
+90                             120
+70         99                   110          130
+let tree = {"value":100,"left":{"value":90,"left":{"value":70},"right":{"value":99}},"right":{"value":120,"left":{"value":110},"right":{"value":130}}};
+
+let array = recursion(tree);
+console.log(tree); // [[100], [90, 120], [70,99,110,130]]
+и преобразует его в массив вида [[100], [90, 120], [70,99,110,130]].
+Для решения должна использоваться рекурсия!
+[[100], [90, 120], [70,99,110,130]].
+
+
+
+
+<!--С этой задачей надо было иметь в виду, что у нас не всегда "красивое" дерево. То есть у нас какая-то ветка могла уходить в даль, когда у другой только один лист.-->
+
+<!--Так же бьютифайте свой код. На любой блокнот есть какой нибудь бьютифаер.-->
+<!--Так же обратите внимание как у меня названы переменные. Приписка `o,a,i,s,f,b` - object,array,integer,string,function,boolean-->
+<!--Если есть вопросы или надо что-то пояснить - пишите.-->
+<script>
+  let tree = {
+    "value":100,
+    "left":{
+      "value":90,
+      "left":{
+        "value":70},
+      "right":{
+        "value":99}
+    },
+    "right":{
+      "value":120,
+      "left":{
+        "value":110},
+      "right":{
+        "value":130}
+    }
+  };
+
+
+
+  function recursion(oTree) {
+    if (!oTree) {
+      return [];
+    }
+    let aLeft = recursion(oTree.left);
+    let aRight = recursion(oTree.right);
+    let aResult = [[oTree.value]];
+    for (let i = 0; i < Math.max(aLeft.length, aRight.length); i++) {
+      aResult.push(
+          (aLeft[i] || []).concat((aRight[i] || []))
+        );
+    }
+    return aResult;
+  }
+
+</script>
+
+</body>
+</html>

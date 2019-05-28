@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+6)Convert array to decimal number
+
+<script>
+    let arr6 = [2, 1, 2, 3];
+//    let result6 = Number(arr6.join(''));
+
+//    with reduce
+    let result62 = arr6.reduce((previousValue, currentItem) => {
+        console.log(previousValue, currentItem);
+        return 10 * previousValue + currentItem;
+
+    });
+
+</script>
+
+</body>
+</html>

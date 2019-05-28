@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+Есть числа от 1 до 10. Нужно вывести их по очереди в консоль с промежутком между вызовами в 5 секунд каждый.
+
+<script>
+
+  let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  function showNumbers(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      setTimeout(() => {
+        console.log(arr[i]);
+      }, 5000 * (i + 1));
+
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

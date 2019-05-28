@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Если ряд
+1 0 1 1 0 1 1 1 0 1 1 1 0
+строка 10 чисел например. Нужно сгенерировать ряд такой и нужной длины.
+
+<script>
+    function stringOfOne(n) {
+        let strOfOne = "";
+        for (let i = 0; i < n; i++) {
+            strOfOne += 1;
+        }
+        return strOfOne;
+    }
+    function strOfSmbls(num) {
+        let strOfSmb = "";
+        let i = 1;
+        while (strOfSmb.length < num) {
+            strOfSmb += stringOfOne(i);
+            strOfSmb += 0;
+            i++;
+        }
+        let resultStr = "";
+        resultStr = strOfSmb.substr(0, num);
+        return resultStr;
+    }
+
+
+
+
+</script>
+
+</body>
+</html>

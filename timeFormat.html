@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Вы должны создать метод, который исправляет заданную временную строку. Кроме того, возникла проблема, поэтому многие из строк времени были сломаны. Формат времени - европейский. Итак, с «00:00:00» до «23:59:59».
+
+Некоторые примеры:
+"09:10:01" -> "09:10:01"
+"11:70:10" -> "12:10:10"
+"19:99:99" -> "20:40:39"
+"24:01:01" -> "00:01:01"
+
+
+<script>
+    let strOfTime = "24:01:01";
+
+    function timeToFormat(str) {
+
+        let num1 = Number(str.substring(0, 2));
+        let num2 = Number(str.substring(3, 5));
+        let num3 = Number(str.substring(6));
+        console.log(num1, num2, num3);
+        if (num2 > 59) {
+            num2 = num2 - 60;
+            num1 = num1 + 1;
+        }
+        if (num3 > 59) {
+            num3 = num3 - 60;
+            num2 = num2 + 1;
+        }
+        if (num1 > 23) {
+            num1 = 0;
+        }
+        console.log(num1, num2, num3);
+    }
+
+
+</script>
+</body>
+</html>

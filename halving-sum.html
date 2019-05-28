@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Для положительного целого числа n вычислим следующую сумму: n + n / 2 + n / 4 + n / 8 + .... Все деления целые.
+
+пример
+Для n = 25 выход должен быть уменьшен на половину halvingSum(n) = 47
+
+Рассчитываемая сумма равна 25 + 12 + 6 + 3 + 1, что равно 47.
+
+<script>
+    function halvingSum(numb) {
+        let halfSum;
+        let current = 2;
+        let resultArr = [numb];
+        let resultSum = 0;
+        while (halfSum !== 1) {
+            halfSum = Math.floor(numb / current);
+            resultArr.push(halfSum);
+            current *= 2;
+        }
+        for (let i = 0; i < resultArr.length; i++) {
+            resultSum += resultArr[i];
+        }
+        console.log(resultArr);
+        return resultSum;
+    }
+
+
+
+
+</script>
+
+</body>
+</html>

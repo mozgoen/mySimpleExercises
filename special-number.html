@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Специальное число - если его цифры состоят только из 0, 1, 2, 3, 4 или 5.
+
+задача
+Учитывая число, определите, это Специальное число или нет.
+Все однозначные числа с интервалом [0: 5] считаются специальным номером.
+
+specialNumber (2) ==> return "Special !!"
+Объяснение:
+Это одноразрядное число в интервале [0: 5].
+specialNumber(59) ==> return "NOT!!"
+
+
+<script>
+    function specialNumber(number) {
+        if (number >= 0 && number <= 5) {
+            return "Special !!"
+        } else {
+            var strOfNumb = String(number);
+            var resultArr = strOfNumb.split('');
+//            for (var i = 0; i < strOfNumb.length; i++) {
+//                resultArr.push(Number(strOfNumb[i]));
+//            }
+            console.log(resultArr);
+            for (j = 0; j < resultArr.length; j++){
+                if (Number(resultArr[j]) > 5) {
+                    return "NOT!!";
+                }
+            }
+            return "Special !!";
+        }
+    }
+
+</script>
+<!--<script src="js/jquery-2.2.3.min.js"></script>-->
+</body>
+</html>

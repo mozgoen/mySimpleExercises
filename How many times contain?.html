@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Ваша задача - вернуть сколько раз строка содержит заданный символ.
+
+Функция принимает строку (inputS) в качестве пареметра и char (charS), который является символом, который вам нужно будет найти и считать.
+
+Например, если вы получите строку ввода «Hello world», а символ, который нужно найти, «o», верните 2.
+
+<script>
+    let inputStr = "Hello world, my name is Ekaterina Mozgo. Order me.";
+    let charStr = "o";
+    function howManyContain(inputS, charS) {
+//        строку в массив
+        let arrOfString = Array.from(inputS);
+        let current = 0;
+        for (let i = 0; i < arrOfString.length; i++) {
+            if (arrOfString[i].toLowerCase() === charS) {
+                current++;
+            }
+        }
+        return current;
+
+    }
+
+
+
+</script>
+</body>
+</html>

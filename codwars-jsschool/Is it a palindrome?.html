@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+Write function isPalindrome that checks if a given string (case insensitive) is a palindrome.
+
+<script>
+  let str1 = "adda";
+  let str2 = "a";
+  let str3 = "hello";
+  let str4 = "Madam, I’m Adam";
+  
+  function isPalindrom(str) {
+    let arr = str.split("");
+    let arr2 = arr.reverse();
+
+    let str2 = arr2.join("");
+
+    if (str === str2) {
+      return true
+    } else {
+      return false
+    }
+  }
+  
+  
+  
+</script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+This time we want to write calculations using functions and get the results.
+Let's have a look at some examples:
+
+JavaScript:
+
+seven(times(five())); // must return 35
+four(plus(nine())); // must return 13
+eight(minus(three())); // must return 5
+six(dividedBy(two())); // must return 3
+
+Requirements:
+
+There must be a function for each number from 0 ("zero") to 9 ("nine")
+There must be a function for each of the following mathematical operations:
+plus, minus, times, dividedBy
+Each calculation consist of exactly one operation and two numbers
+The most outer function represents the left operand, the most inner
+function represents the right operand
+Divison should be integer division, e.g eight(dividedBy(three()))/eight(divided_by(three))
+should return 2, not 2.666666...
+
+
+<script>
+
+    function baseNumber(obj, num) {
+        if (obj) {
+            return obj.action(num, obj.numberOne);
+
+        } else {
+            return num;
+       }
+   }
+
+
+   function seven(obj) {
+       let num = 7;
+        return baseNumber(obj, num);
+   }
+
+
+   function five(obj) {
+        let num = 5;
+        return baseNumber(obj, num);
+
+   }
+   
+   function zero(obj) {
+       let num = 0;
+       return baseNumber(obj, num);       
+   }
+   
+   function one(obj) {
+       let num = 1;
+       return baseNumber(obj, num);
+       
+   }
+
+   function two(obj) {
+        let num = 2;
+        return baseNumber(obj, num);
+
+   }
+
+    function three(obj) {
+        let num = 3;
+        return baseNumber(obj, num);
+
+    }
+
+    function four(obj) {
+        let num = 4;
+        return baseNumber(obj, num);
+
+    }
+
+    function six(obj) {
+        let num = 6;
+        return baseNumber(obj, num);
+
+    }
+
+    function eight(obj) {
+        let num = 8;
+        return baseNumber(obj, num);
+
+    }
+
+    function nine(obj) {
+        let num = 9;
+        return baseNumber(obj, num);
+
+    }
+
+
+    
+
+
+   function times(arg) {
+       let obj = {};
+       obj.numberOne = arg;
+
+        obj.action = function (a, b) {
+            return Math.round(a * b);
+        };
+
+       return obj;
+
+   }
+
+
+
+    function plus(arg) {
+        let obj = {};
+        obj.numberOne = arg;
+
+        obj.action = function (a, b) {
+            return a + b;
+        };
+
+        return obj;
+
+    }
+
+
+
+    function minus(arg) {
+        let obj = {};
+        obj.numberOne = arg;
+
+        obj.action = function (a, b) {
+            return a - b;
+        };
+
+        return obj;
+
+    }
+
+
+
+
+    function dividedBy(arg) {
+        let obj = {};
+        obj.numberOne = arg;
+
+        obj.action = function (a, b) {
+            return Math.floor(a / b);
+        };
+
+        return obj;
+
+    }
+
+
+
+</script>
+
+</body>
+</html>

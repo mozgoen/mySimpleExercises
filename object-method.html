@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+Для доступа к текущему объекту из метода используется ключевое слово this.
+Значение this называется контекстом вызова и будет определено в момент вызова функции.
+Если одну и ту же функцию запускать в контексте разных объектов, она будет получать разный this
+Если функция использует this – это подразумевает работу с объектом
+Чтобы this передался, нужно вызвать функцию именно через точку (или квадратные скобки).
+
+
+Если в объекте присутствует метод toString, который возвращает примитив, то он используется для преобразования.Для численного преобразования используется метод valueOf, который также может возвратить любое примитивное значение. У большинства объектов valueOf не работает (возвращает сам объект и потому игнорируется), при этом для численного преобразования используется toString.
+
+У массивов нет valueOf, поэтому вызывается toString, который возвращает список элементов через запятую.
+alert( ['x', 'y'] == 'x,y' ); // true
+alert( [] == '' ); // true
+
+
+
+{}[0]   // то же что и: [0]
+{} + {} // то же что и: + {}
+То есть, такие вопросы – не на преобразование типов, а на понимание, что если { ... } находится вне выражений, то это не объект, а блок.
+
+<!--Создайте объект calculator с тремя методами:-->
+<!--read() запрашивает prompt два значения и сохраняет их как свойства объекта-->
+<!--sum() возвращает сумму этих двух значений-->
+<!--mul() возвращает произведение этих двух значений-->
+
+
+
+<!--Напишите функцию-конструктор Accumulator(startingValue). Объекты, которые она создает, должны хранить текущую сумму и прибавлять к ней то, что вводит посетитель.-->
+
+<!--Более формально, объект должен:-->
+
+<!--Хранить текущее значение в своём свойстве value. Начальное значение свойства value ставится конструктором равным startingValue.-->
+<!--Метод read() вызывает prompt, принимает число и прибавляет его к свойству value.-->
+<!--Таким образом, свойство value является текущей суммой всего, что ввел посетитель при вызовах метода read(), с учетом начального значения startingValue.-->
+
+
+<!--Напишите конструктор Calculator, который создаёт расширяемые объекты-калькуляторы.-->
+
+<!--Эта задача состоит из двух частей, которые можно решать одна за другой.-->
+
+<!--Первый шаг задачи: вызов calculate(str) принимает строку, например «1 + 2», с жёстко заданным форматом «ЧИСЛО операция ЧИСЛО» (по одному пробелу вокруг операции), и возвращает результат. Понимает плюс + и минус -.-->
+
+<script>
+//    let calculator = {
+//        read: function () {
+//            let firstNumb = +prompt("Введите первое значение", "");
+//            let secondNumb = +prompt("Введите второе значение", "");
+//            this.firstNumder = firstNumb;
+//            this.secondNumder = secondNumb;
+//        },
+//        sum: function () {
+//            return this.firstNumder + this.secondNumder;
+//        },
+//        mul: function () {
+//            return this.firstNumder * this.secondNumder;
+//        }
+//
+//
+//    };
+//
+//    calculator.read();
+//    alert( calculator.sum() );
+//    alert( calculator.mul() );
+
+//
+//let ladder = {
+//    step: 0,
+//    up: function() {
+//        // вверх по лестнице
+//       this.step++;
+//       return this;
+//    },
+//    down: function() {
+//        // вниз по лестнице
+//        this.step--;
+//        return this;
+//    },
+//    showStep: function() {
+//        // вывести текущую ступеньку
+//        alert( this.step );
+//        return this;
+//    }
+//};
+//ladder.up().up().down().up().down().showStep(); //1, чтобы такая цепь работала надо возвращать объект через this
+//
+
+//let user = {
+//
+//    firstName: 'Василий',
+//
+//    toString: function() {
+//        return 'Пользователь ' + this.firstName;
+//    }
+//};
+
+//function Accumulator(startingValue) {
+//    this.value  =  startingValue;
+//
+//    this.read = function () {
+//        this.value += +prompt("Введите число", "");
+//    }
+//
+//}
+//let accumulator = new Accumulator(1); // начальное значение 1
+//accumulator.read(); // прибавит ввод prompt к текущему значению
+//accumulator.read(); // прибавит ввод prompt к текущему значению
+//alert( accumulator.value ); // выведет текущее значение
+
+function Calculator() {
+    this.calculate = function (str) {
+        let arrOfStr = str.split(' ');
+        console.log(arrOfStr;
+        let sum = 0;
+        let differ;
+        if (arrOfStr[1] === "+") {
+            sum = +arrOfStr[0] + +arrOfStr[2];
+            return sum;
+        } else if (arrOfStr[1] === "-") {
+            differ = +arrOfStr[0] - +arrOfStr[2];
+            return differ;
+        }
+    },
+    this.addMethod = function(name, func) {
+        this[name] = func;
+    }
+
+    
+}
+
+let calc = new Calculator;
+calc.addMethod("bgfjdrt", function(a, b) {
+    return a * b;
+});
+calc.bgfjdrt(3, 5);
+
+//надо добавить ф-ю типа calc.addMethod  с произв ф-ей . после добавл ф-и надо вызвать и передать а и б
+
+
+</script>
+
+</body>
+</html>

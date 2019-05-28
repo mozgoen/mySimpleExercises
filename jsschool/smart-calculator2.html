@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+</body>
+
+<script>
+    class SmartCalculator {
+        constructor(initialValue) {
+            this.num = initialValue + '';
+        }
+
+        add(number) {
+            this.num = `${this.num} + ${number}`;
+            return this;
+        }
+
+        subtract(number) {
+            this.num = `${this.num} - ${number}`;
+            return this;
+        }
+
+        multiply(number) {
+            this.num = `${this.num} * ${number}`;
+            return this;
+        }
+
+        devide(number) {
+            this.num = `${this.num} / ${number}`;
+            return this;
+        }
+
+        pow(number) {
+            this.num = `${this.num} ** ${number}`;
+            return this;
+        }
+
+
+        toString() {
+            return eval(`${this.num} + number`); //в каждой строке такое в скобках странных
+        }
+    }
+
+
+
+    const calculator = new SmartCalculator(10);
+
+    const value = calculator
+        .multiply(2)
+        .pow(2)
+        .subtract(95)
+        .subtract(56)
+        .pow(2)
+        .pow(2)
+        .pow(1)
+        .multiply(1);
+
+
+
+</script>
+</html>

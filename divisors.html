@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Найти число делителей положительного целого числа n.
+
+Случайные тесты повышаются до n = 500000.
+
+divisors 4  = 3 -- 1, 2, 4
+divisors 5  = 2 -- 1, 5
+divisors 12 = 6 -- 1, 2, 3, 4, 6, 12
+divisors 30 = 8 -- 1, 2, 3, 5, 6, 10, 15, 30
+
+<script>
+//    function divisors(number) {
+//        let divisor = number;
+//        let arrOfDivisors = [];
+//
+//        while (divisor > 0) {
+//            let restOfNumb = number / divisor;
+//            if (Math.floor(restOfNumb) - restOfNumb === 0) {
+//                arrOfDivisors.push(restOfNumb);
+//            }
+//            divisor--;
+//        }
+//
+//        return arrOfDivisors;
+//    }
+
+
+
+
+function findSimpleDivisors(n) {
+    let arrOfDivisors = [];
+    let arrOfOnlySimpleDiv = [];
+    let divisor = n;
+
+    while (divisor > 0) {
+        let restOfNumb = n / divisor;
+        if (Math.floor(restOfNumb) - restOfNumb === 0) {
+            arrOfDivisors.push(restOfNumb);
+        }
+        divisor--;
+    }
+
+    for (let i = 0; i < arrOfDivisors.length; i++) {
+        let arrOfDiv = [];
+        let count = 1;
+        let current = arrOfDivisors[i];
+
+        while (count <= current) {
+            if (current % count === 0) {
+                arrOfDiv.push(count);
+            }
+            count++;
+        }
+        if (arrOfDiv.length === 2) {
+            arrOfOnlySimpleDiv.push(current);
+        }
+
+    }
+
+    return arrOfOnlySimpleDiv;
+}
+
+//let arrOfOnlySimpleDiv = findSimpleDivisors(base);
+
+//console.log(arrOfOnlySimpleDiv);
+
+</script>
+</body>
+</html>

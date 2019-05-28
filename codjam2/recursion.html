@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Реализовать функцию recursion, которая получает на вход дерево представленное объектом следующей структуры:
+
+100
+90                             120
+70         99                   110          130
+let tree = {"value":100,"left":{"value":90,"left":{"value":70},"right":{"value":99}},"right":{"value":120,"left":{"value":110},"right":{"value":130}}};
+
+let array = recursion(tree);
+console.log(tree); // [[100], [90, 120], [70,99,110,130]]
+и преобразует его в массив вида [[100], [90, 120], [70,99,110,130]].
+Для решения должна использоваться рекурсия!
+[[100], [90, 120], [70,99,110,130]].
+
+<script>
+    let tree = {
+        "value":100,
+        "left":{
+            "value":90,
+            "left":{
+                "value":70},
+            "right":{
+                "value":99}
+        },
+        "right":{
+            "value":120,
+            "left":{
+                "value":110},
+            "right":{
+                "value":130}
+        }
+    };
+
+
+
+    function recursion(obj, depth = 0, result = []) {
+        if (!result[depth]) {
+            result[depth] = [];
+        }
+
+        if (obj.left) {
+            recursion(obj.left, depth + 1, result);
+        }
+
+        if (obj.right) {
+            recursion(obj.right, depth + 1, result);
+        }
+
+        result[depth].push(obj.value);
+
+        return result;
+    }
+
+
+</script>
+
+</body>
+</html>

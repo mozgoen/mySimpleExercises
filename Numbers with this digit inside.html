@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ВЫ должны искать все числа от включительно 1 до включительно заданного числа x, которые имеют заданную цифру d в нем.
+Значение d всегда будет 0 - 9.
+Значение x всегда будет больше 0.
+
+Вы должны вернуться как массив
+
+подсчет этих чисел,
+их сумма
+и их продукт.
+
+Например:
+x = 11
+d = 1
+->
+Числа: 1, 10, 11
+Возврат: [3, 22, 110]
+Если нет цифр, которые включают цифру, верните [0,0,0].
+
+<script>
+    let myX = 11;
+    let myD = 1;
+    function findNumber(numb, length) {
+        let arrOfNumb = [];
+        let arrOfResult = [];
+        for (let i = 1; i < length + 1; i++) {
+            let strOfLength = String(i);
+            let strOfNumb = String(numb);
+
+            if (strOfLength.indexOf(strOfNumb) !== -1) {
+                arrOfNumb.push(strOfLength);
+            }
+        }
+        if (arrOfNumb.length === 0) {
+            arrOfResult.push(0, 0, 0);
+            return arrOfResult;
+        }
+        for (let j = 0; j < arrOfNumb.length; j++) {
+            arrOfNumb[j] = Number(arrOfNumb[j]);
+        }
+
+        console.log(arrOfNumb);
+        let amountOfNumb = arrOfNumb.length;
+
+        let sumOfNumb = arrOfNumb.reduce(function (sum, current) {
+            return Number(sum + current);
+        });
+        let productOfNumb = arrOfNumb.reduce(function (product, current) {
+            return  product * current;
+        });
+        arrOfResult.push(amountOfNumb, sumOfNumb, productOfNumb);
+        return arrOfResult;
+
+
+    }
+
+</script>
+</body>
+</html>

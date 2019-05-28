@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+This time no story, no theory. The examples below show you how to write function accum:
+
+Examples:
+
+accum("abcd") -> "A-Bb-Ccc-Dddd"
+accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+accum("cwAt") -> "C-Ww-Aaa-Tttt"
+The parameter of accum is a string which includes only letters from a..z and A..Z.
+
+
+
+<script>
+  function accum(s) {
+    let strLowercase = s.toLowerCase();
+    let arrOfStr = strLowercase.split("");
+
+    let resultArr = [];
+
+    for (let i = 0; i < arrOfStr.length; i++) {
+      let currentLetter = arrOfStr[i];
+      let secondPartArr = [];
+      for (let j = 0; j < i; j++) {
+        secondPartArr.push(currentLetter);
+      }
+
+      let secondPart = secondPartArr.join("");
+
+      let currentStr = currentLetter.toUpperCase() + secondPart;
+
+      resultArr.push(currentStr);
+      resultArr.push("-");
+    }
+
+    resultArr.pop();
+
+    return resultArr.join("");
+  }
+
+
+
+  function accum2(str) {
+    var letters = str.split('');
+    var result = [];
+    for (var i = 0; i < letters.length; i++) {
+      result.push(letters[i].toUpperCase() + Array(i + 1).join(letters[i].toLowerCase()));
+    }
+    return result.join('-');
+  }
+
+
+
+
+</script>
+</body>
+</html>

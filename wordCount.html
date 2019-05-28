@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<script>
+
+    let string1 = "Dear   Victoria, I love  to press   space button.";
+    let string2 = "Hello/ufeffWorld";
+    let string3 = " ";
+
+    function countWords(str) {
+        str = str.replace(/\s+/g, ' ');
+        str = str.replace(/^\s+/g, '');
+        str = str.replace(/\s+$/g, '');
+        if (str.length === 0) {return 0}
+
+        const arr = str.split(' ');
+        return arr.length;
+    }
+
+
+
+</script>
+
+</body>
+</html>

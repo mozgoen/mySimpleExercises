@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+Учитывая словарь / хэш / объект языков и ваши результаты теста, верните список языков, где ваш результат теста составляет не менее 60, в порядке убывания результатов.
+
+Примечание. Не будет повторяющихся значений.
+
+Примеры
+{"Java" => 10, "Ruby" => 80, "Python" => 65} -> ["Ruby", "Python"]
+{«Хинди» => 60, «Голландский» => 93, «Греческий» => 71} -> [«Голландский», «Греческий», «Хинди»]
+{"C ++" => 50, "ASM" => 10, "Haskell" => 20} -> []
+
+<script>
+    var structure = {
+        "Java" : 10,
+        "Python" : 65,
+        "Ruby" : 80
+    };
+
+    function processStructure(structure) {
+        console.log(structure);
+        var arr = [];
+        for (var key in structure) {
+            var result = structure[key];console.log(key);
+            if (result > 60) {
+                arr.push({
+                    name: key,
+                    result: result
+                });
+//                мы создали массив обьектов. чтоб в дальнейшем его отсортировать
+            }
+        }
+        console.log(arr);
+//        сортировка массива по убыванию result
+        arr.sort(function (a, b) {
+            console.log(b.result, a.result);
+            return b.result-a.result;
+
+        });
+
+        var arrResult = [];
+        arr.forEach(function(item) {
+            arrResult.push(item.name);
+        });
+        console.log(arrResult);
+    }
+    processStructure(structure);
+
+
+</script>
+<!--<script src="js/jquery-2.2.3.min.js"></script>-->
+</body>
+</html>

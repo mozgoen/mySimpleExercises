@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Ваша задача - вернуть сумму треугольных номеров вверх и вниз, включая n-й треугольный номер.
+
+Треугольное число: «любой из серий чисел (1, 3, 6, 10, 15 и т. Д.), Полученных путем непрерывного суммирования натуральных чисел 1, 2, 3, 4, 5 и т. Д.»
+
+n-е треугольное число — это сумма n первых натуральных чисел.
+0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120 … (последовательность A000217 в OEIS)
+
+n*(n+1)/2 - формула для расчета n-го числа
+
+<script>
+    // n - позиция числа в ряду из треугольных чисел
+    function findTringlNumb(n) {
+        var numb;
+        if (n === 1) {
+            return 1;
+        }
+        return n * (n + 1) / 2;
+    }
+
+// n - позиция числа в ряду из треугольных чисел
+    function sumOfTringlNumbers(n) {
+        var resultSum = 0;
+        var resultArr = [];
+        var tringlNum;
+        if (n < 0) {
+            return 0;
+        }
+        while (n > 0) {
+            tringlNum = findTringlNumb(n);
+            resultArr.push(tringlNum);
+            n--;
+        }
+        console.log(resultArr);
+        for (var i = 0; i < resultArr.length; i++) {
+            resultSum += resultArr[i];
+        }
+        return resultSum;
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

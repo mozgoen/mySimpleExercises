@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="outer">
+  <div id="inner"></div>
+</div>
+
+
+<script>
+
+function bind(func, context) {
+  return function () {
+    return func.apply(context, arguments);
+  }
+}
+
+function f(a, b) {
+  alert( this );
+  alert( a + b );
+}
+
+f.bind('context');
+
+
+//String.prototype.repeating = function(n) {
+//  return new Array(n+1).join(this + ' ');
+//}
+
+String.prototype.repeating = function(n) {
+  const str = new Array(n + 1).join(this + ' ');
+  return str.slice(0, str.length - 1);
+}
+
+
+
+
+
+
+</script>
+</body>
+</html>

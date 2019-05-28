@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+const config1 = [['(', ')']];
+const config2 = [['(', ')'], ['[', ']']];
+const config3 = [['(', ')'], ['[', ']'], ['{', '}']];
+const config4 = [['|', '|']];
+const config5 = [['(', ')'], ['|', '|']];
+const config6 = [['1', '2'], ['3', '4'], ['5', '6'], ['7', '7'], ['8', '8']];
+const config7 = [['(', ')'], ['[', ']'], ['{', '}'], ['|', '|']];
+
+it('should check if brackets sequence is correct 1', () => {
+assert.equal(check('()', config1), true);
+});
+
+
+<script>
+    let str1 = '[(])';
+
+    function check(str, bracketsConfig) {
+        for (let i = str.length; i >= 0; i--) {
+            //проходим по массиву конфига
+            for (let j = 0; j < bracketsConfig.length; j++) {
+                // если открывается
+                if (str[i] === bracketsConfig[j][0]) {
+                    // вырезаем повторяющиеся пары
+                    str = str.replace(bracketsConfig[j].join(''), '');
+                }
+
+
+            }
+        }
+        console.log(str);
+        if (str.length === 0) {
+            return true;
+        }
+        return false;
+    }
+
+
+
+</script>
+
+</body>
+</html>

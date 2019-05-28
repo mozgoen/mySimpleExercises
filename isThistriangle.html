@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Внедрить метод, который принимает 3 целых значения a, b, c. Метод должен возвращать true, если треугольник может быть построен с боками заданной длины и false в любом другом случае.
+
+
+<!--Сумма длин двух меньших сторон треугольника не может быть меньше чем третья сторона.-->
+<script>
+    let side_a = 11;
+    let side_b = 10;
+    let side_c = 2;
+
+    function isThisTriangle(a, b, c) {
+        let sum;
+        if (a > b && a > c) {
+            sum = b + c;
+            if (sum < a) {
+                return false;
+            }
+        }
+        if (b > a && b > c) {
+            sum = a + c;
+            if (sum < b) {
+                return false;
+            }
+        }
+        if (c > a && c > b) {
+            sum = a + b;
+            if (sum < c) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+Learning to code around you full time job is taking over your life. You realise that in order to make significant steps quickly, it would help to go to a coding bootcamp in London.
+
+Problem is, many of them cost a fortune, and those that don't still involve a significant amount of time off work - who will pay your mortgage?!
+
+To offset this risk, you decide that rather than leaving work totally, you will request a sabbatical so that you can go back to work post bootcamp and be paid while you look for your next role.
+
+You need to approach your boss. Her decision will be based on three parameters:
+
+val=your value to the organisation
+happ=her happiness level at the time of asking and finally
+The numbers of letters from 'sabbatical' that are present in string 'x'.
+
+Note that if x contains three instances of the letter 'l', that still scores three points, even though there is only one in the word sabbatical.
+
+If the sum of the three parameters (as described above) is > 22, return 'Sabbatical! Boom!', else return 'Back to your desk, boy.'.
+
+<script>
+
+  // sabb('Can I have a sabbatical?', 5, 5);
+    // 'Sabbatical! Boom!'
+
+  function sabb(x, val, happ){
+    let str = x.toLowerCase();
+    let count = 0;
+
+    for (let i = 0; i < str.length; i++) {
+      const condition1 = str[i] === 's';
+      const condition2 = str[i] === 'a';
+      const condition3 = str[i] === 'b';
+      const condition4 = str[i] === 't';
+      const condition5 = str[i] === 'i';
+      const condition6 = str[i] === 'c';
+      const condition7 = str[i] === 'l';
+
+      if (condition1 || condition2 || condition3 || condition4 || condition5 || condition6 || condition7) {
+        count++;
+      }
+    }
+
+    let result = val + happ + count;
+
+    if (result > 22) {
+      return 'Sabbatical! Boom!';
+    } else {
+      return 'Back to your desk, boy.';
+    }
+  }
+
+
+
+  function sabb2(x, val, happ) {
+    return (x.match(/[sabbatical]/gi) || []).length + val + happ > 22 ? 'Sabbatical! Boom!' : 'Back to your desk, boy.'
+  }
+
+
+  function sabb3(x, val, happ){
+    return x.split(/s|a|b|t|i|c|l/).length + val + happ > 22 ? 'Sabbatical! Boom!' : 'Back to your desk, boy.'
+  }
+
+
+</script>
+
+</body>
+</html>

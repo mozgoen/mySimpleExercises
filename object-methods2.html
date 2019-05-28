@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+<script>
+    let arr1 = ["Яблоко", "Апельсин", "Груша"];
+
+    arr1.forEach(function(item, i, arr) {
+//        console.log( i + ": " + item + " (массив:" + arr + ")" );
+    });
+
+    let arr2 = [1, -1, 2, -2, 3];
+
+    let positiveArr = arr2.filter(function(number) {
+        return number > 0;
+    });
+
+    let names = ['HTML', 'CSS', 'JavaScript'];
+
+    let nameLengths = names.map(function(name) {
+        return name.length;
+    });
+
+    function isPositive(number) {
+        return number > 0;
+    }
+
+//    alert( arr2.every(isPositive) ); // false, не все положительные
+//    alert( arr2.some(isPositive) ); // true, есть хоть одно положительное
+
+    let arr3 = [1, 2, 3, 4, 5];
+    // для каждого элемента массива запустить функцию,
+    // промежуточный результат передавать первым аргументом далее
+    let result = arr3.reduce(function(sum, current) {
+        return sum + current;
+    }, 0);
+
+
+    let arr4 = ["Есть", "жизнь", "на", "Марсе"];
+
+    let arrLength = arr4.map(function (item) {
+        return item.length;
+    });
+
+    let arr5 = [1,2,3,4,5,6];
+
+    function getSums(arr) {
+        let resultArr = [];
+        if (arr.length === 0) {
+            return resultArr;
+        }
+        let totalSum = arr.reduce(function (previousValue, currentItem) {
+            resultArr.push(previousValue);
+            return previousValue + currentItem;
+        });
+//        последнюю сумму добавляем отдельно иначе не сработает, и поэтому же записыываем сумму в переменнуюю totalSum
+        resultArr.push(totalSum);
+        return resultArr;
+
+    }
+
+    let vasya = {
+        age: 21,
+        name: 'Вася',
+        surname: 'Петров'
+    };
+
+    let user = {
+        isAdmin: false,
+        isEmailConfirmed: true
+    };
+
+    let student = {
+        university: 'My university'
+    };
+
+//    copy(dst, src1, src2…)Копирует свойства из объектов src1, src2,... в объект dst. Возвращает получившийся объект.
+
+    function copy(dst) {
+//        начинаем перебор массива аргументов с 1, потому что 0 - это объект итоговый
+        for (let i = 1; i < arguments.length; i++) {
+            let arg = arguments[i];
+            for (let key in arg) {
+                dst[key] = arg[key];
+            }
+        }
+        return dst;
+    }
+    let userClone = copy({}, user, student, vasya);
+
+//    даты
+    let date1 = new Date(2012, 1, 20, 3, 12);
+    
+//    получает день недели в сокращ варианте
+    function getWeekDay(date) {
+        let arrOfDays = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+        return arrOfDays[date.getDay()];
+    }
+
+// добавить в конструктор Article:  Подсчёт общего количества созданных объектов.Запоминание даты последнего созданного объекта.Используйте для этого статические свойства.Пусть вызов Article.showStats() выводит то и другое.
+
+//    function Article() {
+//        this.created = new Date();
+//        Article.count++;
+////        запоминаем дату
+//        Article.lastDate = this.created;
+//    }
+//    Article.count = 0;
+//    Article.showStats = function () {
+//        console.log(this.count, this.lastDate);
+//    }
+
+//Создайте функцию sumArgs(), которая будет суммировать все свои аргументы:
+//    function sumArgs() {
+////        одолжили метод
+//        arguments.reduce = [].reduce;
+//        return arguments.reduce(function (sum, item) {
+//            return sum + item;
+//        })
+//    }
+    function sumArgs() {
+        // запустим reduce из массива напрямую
+        return [].reduce.call(arguments, function (sum, item) {
+            return sum + item;
+        })
+
+    }
+
+
+</script>
+
+</body>
+</html>

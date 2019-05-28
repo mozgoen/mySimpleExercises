@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+The SantaClausable interface is implemented,
+if all of the following methods are defined on an object:
+
+sayHoHoHo() / say_ho_ho_ho
+distributeGifts() / distribute_gifts
+goDownTheChimney() / go_down_the_chimney
+
+<script>
+    let SantaClaus = { name: 'Santa' };
+    let DummySantaClaus = {};
+
+    function isSantaClausable(obj) {
+        console.log(obj);
+
+        const firstMethod = obj.sayHoHoHo && typeof obj.sayHoHoHo === "function";
+        const secondMethod = obj.distributeGifts && typeof obj.distributeGifts === "function";
+        const thirdMethod = obj.distributeGifts && typeof obj.distributeGifts === "function";
+
+        if (!firstMethod || !secondMethod || !thirdMethod) {
+            return false;
+        }
+        return true;
+    }
+
+
+
+</script>
+</body>
+</html>

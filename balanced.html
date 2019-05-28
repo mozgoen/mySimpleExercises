@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+Сбалансированное число - это число, в котором сумма всех цифр слева от средней цифры (цифр) и сумма всех цифр справа от средней цифры (ей) равны.
+
+Учитывая число, найдите, сбалансирован он или нет.
+
+Если число имеет нечетное число цифр, тогда имеется только одна средняя цифра, например. 92645 имеет средний разряд 6; в противном случае есть две средние цифры, например. 1301 имеет средние цифры 3 и 0
+
+Средняя цифра (цифры) не должна учитываться при определении того, сбалансировано ли количество или нет, например, 413023 является сбалансированным числом, так как левая сумма и правая сумма равны 5.
+
+balancedNum (295591) ==> return "Not Balanced" .
+Объяснение:
+Так как сумма всех цифр слева от средних цифр (11)и сумма всех цифр справа от средних цифр (10) равна, то она не сбалансирована Примечание. Средняя цифра (цифры) равна 55.
+
+<script>
+    function balancedNum(number) {
+        if (number < 10) {
+            return "Balanced";
+        }
+        if (number > 10) {
+            let strOfNumb = String(number);
+            if (strOfNumb.length % 2 !== 0) {
+                let quantityMark = Math.floor(strOfNumb.length / 2);
+                let newStr1 = strOfNumb.substr(0, quantityMark);
+                let newStr2 = strOfNumb.substr(quantityMark + 1, quantityMark);
+//                console.log(newStr1);
+//                console.log(newStr2);
+            } else {
+                quantityMark = strOfNumb.length / 2 - 1;
+                newStr1 = strOfNumb.substr(0, quantityMark);
+                newStr2 = strOfNumb.substr(quantityMark + 2, quantityMark);
+//                console.log(newStr1);
+//                console.log(newStr2);
+            }
+
+            let sum1 = 0;
+            let sum2 = 0;
+            for (let i = 0; i < newStr1.length; i++) {
+                sum1 += +newStr1[i];
+            }
+            for (let j = 0; j < newStr2.length; j++) {
+                sum2 += +newStr2[j];
+            }
+            console.log(sum1);console.log(sum2);
+            if (sum1 === sum2) {
+                return "Balanced";
+            } else {return "Not Balanced";}
+
+        }
+
+    }
+
+
+</script>
+<!--<script src="js/jquery-2.2.3.min.js"></script>-->
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Создайте функцию stringify, которая принимает список аргументов list и возвращает строковое представление списка. Строковое представление списка начинается со значения текущего Узла, указанного его данными / $ data / Data, с последующим символом пробела, стрелкой и другим символом пробела («->»), за которым следует остальная часть список. Конец строкового представления списка всегда должен заканчиваться нулевым / NULL / None / nil / nullptr / null () (все кепки или все строчные буквы в зависимости от языка, на котором вы выполняете этот Kata). Например, учитывая следующий список:
+
+новый узел (1, новый узел (2, новый узел (3)))
+... его строковое представление будет:
+
+"1 -> 2 -> 3 -> null"
+И учитывая следующий связанный список:
+
+новый узел (0, новый узел (1, новый узел (4, новый узел (9, новый узел (16)))))
+... его строковое представление будет:
+
+"0 -> 1 -> 4 -> 9 -> 16 -> null"
+Обратите внимание, что null / NULL / None / nil / nullptr / null () сам также считается допустимым связанным списком. В этом случае его строковое представление будет просто «null» / «NULL» / «None» / «nil» / «nullptr» / @ «NULL» / «null ()» (опять же, в зависимости от языка).
+
+Для простоты этого Ката можно предположить, что любой Узел в этой Ката может содержать только неотрицательные целочисленные значения. Например, вы не столкнетесь с узлом, чье свойство data / $ data / Data является «Hello World».
+
+And given the following linked list:
+
+new Node(0, new Node(1, new Node(4, new Node(9, new Node(16)))))
+... its string representation would be:
+
+"0 -> 1 -> 4 -> 9 -> 16 -> null"
+
+<script>
+    'use strict';
+    class Node {
+        constructor(data, next = null) {
+            this.data = data;
+            this.next = next;
+        }
+    }
+
+    function stringify(list) {
+        let arrOfData = [];
+        arrOfData.push(list.data);
+        if (list.next) {
+            arrOfData.push(stringify(list.next));
+        }
+        if (list.next === null) {
+            arrOfData.push("null");
+        }
+        console.log(arrOfData);
+        let str = arrOfData.join(' -> ');
+        return str;
+
+    }
+
+
+
+
+
+</script>
+
+</body>
+</html>

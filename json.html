@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<script>
+
+//    let str = '{"title":"Конференция","date":"2014-11-30T12:00:00.000Z"}';
+//
+//    let event = JSON.parse(str, function(key, value) {
+//        if (key === 'date') {
+//            return new Date(value);
+//        }
+//        return value;
+//    });
+//
+//    alert( event.date.getDate() );
+
+
+//function printNumbersInterval() {
+//    let i = 1;
+//    let timerId = setInterval(function() {
+//        console.log(i);
+//        if (i === 20) {
+//            clearInterval(timerId);
+//        }
+//        i++;
+//    }, 100);
+//}
+
+function printNumbersTimeout20_100() {
+    let i = 1;
+    let timerId = setTimeout(function func() {
+        console.log(i);
+        i++;
+        if (i <= 20) {
+            timerId = setTimeout(func(), 100);
+        }
+    }, 100);
+}
+
+
+//Напишите функцию delay(f, ms), которая возвращает обёртку вокруг f, задерживающую вызов на ms миллисекунд.
+
+
+function delay(f, ms) {
+    return function () {
+        let savedThis = this;
+        let savedArgs = arguments;
+        setTimeout(function () {
+            f.apply(savedThis, savedArgs);
+        }, ms)
+    }
+}
+function f(x) {
+    alert(x);
+}
+
+let f1000 = delay(f, 1000);
+let f1500 = delay(f, 1500);
+
+
+</script>
+
+</body>
+</html>

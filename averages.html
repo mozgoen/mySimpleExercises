@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Напишите метод, который получает массив целых чисел и возвращает массив средних значений каждого целочисленного числа и его последователя, если таковой имеется.
+
+Пример:
+
+Вход: [1, 3, 5, 1, -10]
+Выход: [2, 4, 3, -4,5]
+Если массив имеет 0 или 1 значение или имеет значение null или None, ваш метод должен возвращать пустой массив.
+
+<script>
+    function averagesOfNumb(array) {
+        var resultArr = [];
+        var average;
+        if (array.length < 2 || array[i] === null) {
+            return resultArr;
+        }
+        for (var i = 0; i < array.length - 1; i++) {
+           average = (array[i] + array[i + 1]) / 2;
+            resultArr.push(average);
+        }
+        return resultArr;
+    }
+    var arr1 = [1, 3, 5, 1, -10];
+
+</script>
+</body>
+</html>

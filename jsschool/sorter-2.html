@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    'use strict';
+    class Sorter {
+        constructor() {
+            this.arr = [];
+            this.comparator = (a, b) => a - b;
+        }
+
+        add(element) {
+            this.arr.push(element);
+        }
+
+        at(index) {
+            return this.arr[index];
+        }
+
+        get length() {
+            return this.arr.length;
+        }
+
+        toArray() {
+            return this.arr;
+        }
+
+        sort(indices) {
+            const sortedArr = [];
+            const sortedIndices = indices.sort((a, b) => a - b);
+
+            for (let i = 0, len = sortedIndices.length; i < len; i++) {
+                sortedArr.push(this.arr[sortedIndices[i]])
+            }
+            sortedArr.sort(this.comparator);
+
+            for (let i = 0, len = sortedIndices.length; i < len; i++) {
+                this.arr[sortedIndices[i]] = sortedArr.shift();
+            }
+        }
+
+        setComparator(compareFunction) {
+            this.comparator = compareFunction;
+        }
+
+    }
+
+    const AGE_COMPARATOR = (left, right) => left.age - right.age;
+    const REVERSE_COMPARATOR = (left, right) => right - left;
+    const STRINGIFY_COMPARATOR = (left, right) => JSON.stringify(left, null, 2).length - JSON.stringify(right, null, 2).length;
+
+    let sorter = new Sorter();
+
+
+    sorter.add(6);
+    sorter.add(5);
+    sorter.add(20);
+    sorter.add(10);
+    sorter.add(100);
+
+    sorter.setComparator(REVERSE_COMPARATOR);
+    sorter.sort([1, 0]);
+
+    console.log(sorter.toArray());
+
+
+
+</script>
+
+</body>
+</html>

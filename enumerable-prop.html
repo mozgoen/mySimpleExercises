@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+</body>
+
+<script>
+
+//    вместо объекта используется просто замыкание
+//    замыкание можно вызвать с ()
+//    и у замыкания есть valueOf
+
+let increment = 1;
+let funcFour = {};
+funcFour.valueOf = function () {
+    return increment += 7;
+};
+
+let funcThree = function () {
+    return funcFour;
+};
+
+let funcTwo = function () {
+    return funcThree;
+};
+funcTwo.valueOf = function () {
+    return 3;
+};
+
+let funcOne = function () {
+    return funcTwo;
+};
+funcOne.valueOf = function () {
+    return 10;
+};
+
+    const incrementor = () => {
+        return function () {
+            return funcOne;
+        }
+    };
+
+
+
+console.log(incrementor()()(), 3);
+console.log(incrementor()()()()(), 8);
+console.log(incrementor()(), 10);
+console.log(incrementor()()()()(), 15);
+
+
+</script>
+</html>

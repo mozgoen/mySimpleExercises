@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Учитывая массив чисел, определите, является ли сумма всех чисел нечетной или четной.
+Дайте свой ответ в строчном формате как «нечетный» или «четный».
+Если входной массив пуст, рассмотрите его как: [0] (массив с нулем).
+Пример:
+oddOrEven([0]) returns "even"
+oddOrEven([2, 5, 34, 6]) returns "odd"
+oddOrEven([0, -1, -5]) returns "even"
+
+<script>
+    var array = [0, -1, -5];
+    function oddOrEven(arr) {
+        if (arr.length === 0) {
+            arr = [0];
+            return "even";
+        }  else {
+            var sum = 0;
+            for (var i = 0; i < arr.length; i++) {
+                sum = sum + arr[i];
+            }
+            console.log(sum);
+            if (sum % 2 !== 0) {
+                return "odd";
+            }
+        }
+        return "even";
+    }
+    oddOrEven(array);
+
+</script>
+<!--<script src="js/jquery-2.2.3.min.js"></script>-->
+</body>
+</html>

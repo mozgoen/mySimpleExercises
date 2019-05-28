@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+Число называется автоморфным числом тогда и только тогда, когда его квадрат заканчивается теми же цифрами, что и само число.
+задача
+Учитывая число, определяющее, является ли оно автоморфным или нет.
+Однозначные числа считаются автоморфными.
+
+1- autoMorphic (25) - >> return "Automorphic"
+Объяснение:
+25 - 625, заканчивается цифрами того же номера, которые равны 25.
+2- autoMorphic (13) - >> return «Не !!»
+Объяснение:
+13 составляет 169, не заканчивается цифрами того же номера, что и 69.
+
+<script>
+    function autoMorphic(number) {
+        if(number > 0 && number < 10){
+            return "Automorphic";
+        }
+        if (number >= 10){
+            var numberStr = String(number);
+            console.log(numberStr);
+            var squareOfNumber = String(number * number);
+            console.log(squareOfNumber);
+            if (squareOfNumber.slice(-numberStr.length) === numberStr){
+                return "Automorphic";
+             } else {return "Not!";}
+
+        }
+    }
+
+
+</script>
+<!--<script src="js/jquery-2.2.3.min.js"></script>-->
+</body>
+</html>

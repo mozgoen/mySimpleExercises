@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebSockets</title>
+  <script>
+    window.addEventListener("load", function() {
+      var token = token;
+      var task2 = {};
+      var socket = new WebSocket("ws://wsc.2123.io/");
+      socket.binaryType = "arraybuffer";
+      socket.onopen = function() {
+        socket.send(JSON.stringify({ command: "challenge accepted", name: "mozgoen11" }));
+      };
+      socket.onmessage = function(evt) {
+        if (typeof evt.data == "string") {
+          var command = JSON.parse(evt.data);
+          switch (command.next) {
+            case "challenge accepted":
+              token = command.token;
+              socket.send(JSON.stringify({ command: "arithmetic", token: token }));
+              break;
+            case "arithmetic":
+              var result;
+              switch (command.operator) {
+                case '+':
+                  result = command.operands[0] + command.operands[1];
+                  break;
+                case '-':
+                  result = command.operands[0] - command.operands[1];
+                  break;
+                case '*':
+                  result = command.operands[0] * command.operands[1];
+                  break;
+              }
+              socket.send(JSON.stringify({ command: "arithmetic", token: token, result: result }));
+              break;
+            case "win":
+              socket.send(JSON.stringify({ command: "next", token: token }));
+              break;
+            case "binary_sum":
+              task2 = command;
+              break;
+          }
+        } else {
+          var result;
+          var arrs = {
+            8: Uint8Array,
+            16: Uint16Array,
+          }
+          var arr = new arrs[task2.bits](evt.data);
+          var sum = 0;
+          for (var i = 0; i < arr.length; i++) {
+            sum += arr[i];
+          }
+          result = sum;
+          socket.send(JSON.stringify({ command: "task_two_result", token: token, result: result }));
+        }
+      }
+    });
+  </script>
+</head>
+<body>
+
+</body>
+</html>

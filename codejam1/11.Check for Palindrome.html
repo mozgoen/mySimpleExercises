@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+11) Check for Palindrome
+"expected": "true"
+ПРИМЕРЫ
+<!--madam or racecar or the number 10201.-->
+
+You can use the localeCompare() method.
+
+string_a.localeCompare(string_b);
+
+/* Expected Returns:
+
+0:  exact match
+-1:  string_a < string_b
+1:  string_a > string_b
+
+<script>
+    let str1 = "A man, a plan, a canal. Panama";
+    let str2 = "A man, a plan, a canal. Panama wrong";
+    let str3 = "10201";
+
+    let palindrome = str => {
+        //    нужно сначало выбрать все буквы (и цифры- если есть).
+        let str2 = str.match(/[A-Za-z0-9]/g).join('');
+        console.log(str2);
+
+//        все буквы сделать маленькими
+        let str3 = str2.toLowerCase();
+        console.log(str3);
+
+//    сделать копию-реверс (другая получится строка)(можно сделать копию до реверса с помощью slice)
+        let reverseCopy = str3.split("").reverse().join("");
+        console.log(reverseCopy);
+        console.log(str3);
+
+//для сравнения используем метод строк localeCompare()
+        if (str3.localeCompare(reverseCopy) !== 0) {
+            return false
+        }
+        return true
+    };
+</script>
+
+</body>
+</html>

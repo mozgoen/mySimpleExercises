@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+задача
+Напишите метод, который заменяет каждый n-й символ oldValue символом newValue.
+
+Method:
+replaceNth(text, n, oldValue, newValue)
+
+Example:
+n:         2
+oldValue: 'a'
+newValue: 'o'
+"Vader said: No, I am your father!" -> "Vader soid: No, I am your fother!"
+1     2          3        4       -> 2nd and 4th occurence are replaced
+
+Ваш метод должен быть чувствительным к регистру!
+
+Как вы можете видеть в примере: Первый изменен - второй «a». Таким образом, начало всегда на n-м подходящем персонаже, а не на первом!
+Если n равно 0 или отрицательное, или если оно больше, чем счет oldValue, верните исходный текст без изменения.
+Текст и символы никогда не будут нулевыми.
+
+<!--METHOD1: разделите строку с помощью двух подстрок и введите символ между ними-->
+<!--METHOD2: преобразуйте строку в массив символов, замените один элемент массива и присоедините его-->
+
+<script>
+    let myStr = "hello my evil dog eto enrghw";
+    let old = "e";
+    let newVal = "y";
+    let n = 3;
+
+        function replaceNth(text, n, oldValue, newValue) {
+            let position;
+            let count = 0;
+            for (let i = 0; i < text.length; i++) {
+               if (text[i] === oldValue) {
+                   count++;
+//                   position = i;
+//                   text = text.substr(0, position) + newValue + text.substr(position + 1);
+               }
+               if (count === n) {
+                   position = i;
+                   text = text.substr(0, position) + newValue + text.substr(position + 1);
+                   count = 0;
+               }
+            }
+            return text;
+
+
+        }
+    let result = replaceNth(myStr, n, old, newVal);
+    console.log(result);
+
+</script>
+
+</body>
+</html>

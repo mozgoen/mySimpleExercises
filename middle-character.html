@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+1)You are going to be given a word. Your job is to return the middle character of the word.
+If the word's length is odd, return the middle character.
+If the word's length is even, return the middle 2 characters.
+
+#Examples:
+
+Kata.getMiddle("test") should return "es"
+
+Kata.getMiddle("testing") should return "t"
+
+Kata.getMiddle("middle") should return "dd"
+
+Kata.getMiddle("A") should return "A"
+#Input
+
+A word (string) of length 0 < str < 1000 (In javascript you may get slightly
+more than 1000 in some test cases due to an error in the test cases).
+You do not need to test for this. This is only here to
+tell you that you do not need to worry about your solution timing out.
+
+
+
+2)Can you realize a function that returns word count from a given string?
+
+You have to ensure that spaces in string is a whitespace for real.
+
+What we want and finish of work:
+
+countWords("Hello"); // returns 1 as int
+countWords("Hello, World!") // returns 2
+countWords("No results for search term `s`") // returns 6
+countWords(" Hello") // returns 1
+// ... and so on
+What kind of tests we got for your code:
+
+Function have to count words, but not spaces, so be sure that it does right.
+Empty string has no words.
+String with spaces around should be trimmed.
+Non-whitespace (ex. breakspace, unicode chars) should be assumed as delimiter
+Be sure that words with chars like -, ', ` are counted right.
+describe("countWords", function() {
+it("should work in basic form of problem", function() {
+Test.assertEquals(countWords("Hello"), 1);
+Test.assertEquals(countWords("Hello, World!"), 2);
+Test.assertEquals(countWords("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."), 19);
+Test.assertEquals(countWords(""), 0);
+Test.assertEquals(countWords("With! Symbol@ #Around! (Every) %Word$"), 5);
+Test.assertEquals(countWords("Dear   Victoria, I love  to press   space button."), 8);
+});
+
+it("should work with spaces around string", function() {
+Test.assertEquals(countWords(" Arthur "), 1);
+Test.assertEquals(countWords(" David"), 1);
+Test.assertEquals(countWords("Nelson "), 1);
+Test.assertEquals(countWords("  Hello Gomer  "), 2);
+Test.assertEquals(countWords("  Hello     Bart  "), 2);
+});
+
+it("should work with non-whitespace (ex. breakspace) chars", function() {
+Test.assertEquals(countWords("﻿Hello﻿World "), 2);
+Test.assertEquals(countWords("Hello﻿World"), 2);
+});
+});
+
+<script>
+    function getMiddle(s) {
+        if (s.length === 1) {
+            return s;
+        }
+        if(s.length === 2) {
+            return s;
+        }
+        if (s.length % 2 !== 0) {
+            let indexOfMiddle = Math.floor(s.length / 2) + 1;
+            return s[indexOfMiddle - 1];
+        } else {
+            let indexOfMiddleOne = Math.floor(s.length / 2);
+            let indexOfMiddleTwo = Math.floor(s.length / 2) + 1;
+             return s[indexOfMiddleOne - 1] + s[indexOfMiddleTwo - 1];
+
+        }
+
+    }
+
+
+
+    let string1 = "Dear   Victoria, I love  to press   space button.";
+    let string2 = "Hello/ufeffWorld";
+
+    function countWords(str) {
+        let arr = str.split(" ");
+        console.log(arr);
+        let newArr = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] !== "") {
+                newArr.push(arr[i]);
+            }
+        }
+        console.log(newArr);
+        return newArr.length;
+    }
+
+
+
+</script>
+
+</body>
+</html>

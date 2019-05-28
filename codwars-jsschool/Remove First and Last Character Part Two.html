@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function array(arr){
+        const arrOfStr = arr.split(',');
+        if (arrOfStr.length < 3) {return null}
+        const newArr = arrOfStr.splice(1, arrOfStr.length - 2);
+        return newArr.join(' ');
+    }
+</script>
+
+</body>
+</html>

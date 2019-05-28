@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+</body>
+
+<script>
+    //получить ключи текущего объекта
+    // если ключ есть и значение не пустой обьект,
+    // то проверяем рекурсией его ключи а если пустой обьект то просто увеличиваем счетчик
+    const getDeepPropertiesCount = (object) => {
+        let count = 0;
+        for (let key in object) {
+            let keyInObj = object[key];
+            count++;
+            count += getDeepPropertiesCount(keyInObj);
+        }
+
+        return count;
+
+    };
+
+    const obj = {};
+    let temp = obj;
+    for (let i = 0; i < 100; i++) {
+        temp[i] = {};
+        temp[i][i - 1] = {};
+        temp[i][i] = {};
+        temp[i][i + 1] = {};
+
+        temp = temp[i][i];
+    }
+
+    const count1 = getDeepPropertiesCount(obj);
+    console.log(count1, 400)
+
+    for (let i = 0; i < 100; i++) {
+        temp[i] = {};
+        temp[i][i] = {};
+        temp[i][i + 1] = {};
+
+        temp = temp[i][i];
+    }
+
+    const count2 = getDeepPropertiesCount(obj);
+    console.log(count2, 700)
+
+
+
+
+</script>
+</html>

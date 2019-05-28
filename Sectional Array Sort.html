@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+В этом ката вам предоставляется массив для сортировки, но вы должны начать сортировку с определенной позиции массива (в порядке возрастания) и, при необходимости, вам предоставляется количество элементов для сортировки.
+
+Примеры:
+sectSort ([1, 2, 5, 7, 4, 6, 3, 9, 8], 2) // => [1, 2, 3, 4, 5, 6, 7, 8, 9]
+sectSort ([9, 7, 4, 2, 5, 3, 1, 8, 6], 2, 5) // => [9, 7, 1, 2, 3, 4, 5, 8, 6]
+Документация:
+sectSort (массив, начало, длина);
+array - массив для сортировки
+start - позиция для начала сортировки
+length - количество элементов для сортировки (необязательно)
+если аргумент length не передан или равен нулю, вы сортируете все элементы справа от начала postiton в массиве
+
+<script>
+    let myArr = [5, 7, 4, 2, 9, 3, 1, 8, 6];
+    let myStart  = 2;
+    let myLength = 4;
+
+    function sectSort(array, start, length) {
+        let min;
+        let current = 0;
+        for (let i = start; i < array.length; i++){
+            min = i;
+            for (let j = i + 1; j < array.length; j++) {
+                if (array[j] < array[min]) {
+                    min = j;
+                }
+            }
+            if (current === length) {
+                return array;
+            }
+            let swap = array[min];
+            array[min] = array[i];
+            array[i] = swap;
+            current++;
+        }
+        return array;
+
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

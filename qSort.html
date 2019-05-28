@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+
+<script>
+  let array1 = [2, 8, 9, 1, 4, 7, 3, 0, 3, 10];
+
+  let str1 = 'привет маша даша саша';
+
+//  function qSort(arr) {
+//
+//    if (arr.length === 0) return [];
+//
+//    let less = [], great = [];
+//
+//    let q = arr.pop();
+//
+//    arr.forEach(item => item < q ? less.push(item) : great.push(item));
+//
+//    return qSort(less).concat(q).concat(qSort(great));
+//  }
+
+
+  function bind(func, context, ...args) {
+    return function () {
+      console.log(arguments[0]);
+      return func.apply(context, args);
+    }
+  }
+
+  let obj1 = {
+    name: 'kate',
+    sayHello: function (gest) {
+      alert(this.name + ' ' + gest) ;
+    }
+  };
+
+//  setTimeout(bind(obj1.sayHello, obj1, 'jully'), 3000);
+
+
+  function sum(n) {
+    let currentSum = n;
+
+    function func(b) {
+      currentSum += b;
+      return func;
+    }
+
+    func.toString = function () {
+      return currentSum;
+    };
+
+    return func;
+  }
+
+
+//
+//  if(!Object.create) {
+//    Object.create = function (proto) {
+//      function F() {}
+//      F.prototype = proto;
+//      return new F;
+//    }
+//  }
+
+//  String.prototype.repeating = function (n) {
+//    const str = new Array(n + 1).join(this + ' ');
+//    return str.slice(0, str.length - 1);
+//
+//  }
+
+  function Animal(name) {
+    this.name = name;
+    this.speed = 0;
+  }
+  Animal.prototype.run = function (speed) {
+    this.speed += speed;
+    return this.speed;
+  };
+
+  function Rabbit(name) {
+    Animal.apply(this, arguments);
+  }
+  Rabbit.prototype = Object.create(Animal.prototype);
+  Rabbit.prototype.constructor = Rabbit;
+
+  Rabbit.prototype.jump = function() {
+    this.speed++;
+  };
+
+  Rabbit.prototype.run = function (speed) {
+    Animal.prototype.run.apply(this, arguments);
+    this.jump();
+  };
+
+  let rabbit = new Rabbit('Кроль');
+
+
+
+
+  let promise = new Promise((resolve, reject) => {
+
+    setTimeout(() => {
+      resolve("result");
+    }, 1000)
+
+    
+  });
+
+  promise.then(
+    result => {alert("Fulfilled: " + result); return '3'},
+
+    error => {alert("Rejected: " + error)}
+  ).then(
+    result => {alert("Fulfilled: " + result)},
+
+    error => {alert("Rejected: " + error)}
+  )
+
+//  promise.then(onFulfilled, onRejected);
+
+//  promise.then(onFulfilled);
+
+//  promise.catch(onRejected);
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

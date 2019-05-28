@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Сильное число - это число, в котором сумма факториала его цифр равна самому числу.
+
+Например: 145, поскольку
+1! + 4! + 5! = 1 + 24 + 120 = 145
+Итак, 145 - это сильное число.
+
+задача
+Учитывая число, найдите, является ли оно сильным или нет.
+
+1- strong_num (1)  ==> return "STRONG!!!!"
+Since , the sum of its digits' factorial of (1) is equal to number itself (1) , Then its a Strong .
+
+2- strong_num (123) ==> return "Not Strong !!"
+Since , the sum of its digits' factorial of 1! + 2! + 3! = 9 is not equal to number itself (123) , Then it's Not Strong .
+
+Факториал числа n - это произведение чисел от 1 до n.
+Например, Пример вычисления факториала числа 3! = 3*2*1 = 6
+0 факториал принимают за 1, т.е. 0! = 1
+<script>
+
+    function factorial(n) {
+        return (n !== 1) ? n * factorial(n - 1) : 1;
+    }
+
+
+    function strongNum(num) {
+        var stringOfNum = String(num);
+        var arrayOfNum = stringOfNum.split('');
+        console.log(arrayOfNum);
+        var arrayOfFactorial = [];
+        var resultSum = 0;
+        for (var i = 0; i < arrayOfNum.length; i++) {
+            var numberOfNum = Number(arrayOfNum[i]);
+            var factorialOfNum = factorial(numberOfNum);
+            arrayOfFactorial.push(factorialOfNum);
+        }
+        console.log(arrayOfFactorial);
+        for (var j = 0; j < arrayOfFactorial.length; j++) {
+            resultSum += arrayOfFactorial[j];
+        }
+        console.log(resultSum);
+        if (resultSum === num) {
+            return "STRONG!!!!"
+        } else {
+            return "Not Strong !!"
+        }
+
+    }
+
+
+
+</script>
+</body>
+</html>

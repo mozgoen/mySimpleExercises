@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Прайм
+Определите функцию isPrime / is_prime (), которая принимает один целочисленный аргумент и возвращает true / True или false / False в зависимости от того, является ли целое число простым.
+
+В Википедии простое число (или простое число) является натуральным числом больше единицы, не имеющим положительных делителей, отличных от 1 и самого себя.
+
+пример
+bool isPrime (5) = вернуть true
+Предположения
+Вы можете предположить, что вам будет задан целочисленный ввод.
+Вы не можете предположить, что целое число будет только положительным. Вам также могут быть присвоены отрицательные числа (или 0).
+
+
+<script>
+    'use strict';
+    function isPrime(num) {
+        if (num  <= 1) {
+            return false
+        }
+        let count = 1;
+        let arrOfdividers = [];
+        while (count < num + 1) {
+            if (num % count === 0) {
+                arrOfdividers.push(count);
+            }
+            count++;
+        }
+        if (arrOfdividers.length !== 2) {
+            return false
+        } else {
+            return true
+        }
+
+    }
+
+
+
+
+</script>
+
+</body>
+</html>

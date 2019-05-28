@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+В гипотезе Collatz утверждается, что для любого натурального числа n, если n четно, разделим его на 2. Если n нечетно, умножьте его на 3 и добавьте 1. Если вы повторяете процесс непрерывно для n, n в конечном итоге достигнет 1.
+
+Например, если n = 20, результирующая последовательность будет:
+
+[20, 10, 5, 16, 8, 4, 2, 1]
+
+Напишите программу, которая выведет длину гипотезы Collatz для любого заданного n. В приведенном выше примере выход будет равен 8.
+
+<script>
+    function collatzToNumber(num) {
+        var resultArr = [num];
+        var result = num;
+        while (result !== 1) {
+            if (result % 2 === 0) {
+                result = result / 2;
+                resultArr.push(result);
+            } else {
+                result = result * 3 + 1;
+                resultArr.push(result);
+            }
+            collatzToNumber(result);
+        }
+
+        return  resultArr.length;
+    }
+
+    console.log(collatzToNumber(20))
+
+</script>
+
+</body>
+</html>

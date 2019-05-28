@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Реализуйте функцию sumOfOther, которая получает на вход массив, например, [2, 3, 4, 1], а возращает, [8, 7, 6, 9]. Входной массив - одномерный, целочисленный, произвольной длины. В результирующем массиве каждый элемент по индексу i - это сумма остальных элементов оригинального массива.
+
+<script>
+    let arr1 = [2, 3, 4, 1];
+
+    function sumOfOther(arr) {
+        let result = [];
+        for (let i = 0; i < arr.length; i++) {
+            let sum = 0;
+            for (let j = 0; j < arr.length; j++) {
+                if (j !== i) {
+                    sum += arr[j];
+                }
+            }
+            result.push(sum);
+        }
+        return result;
+    }
+
+
+</script>
+
+</body>
+</html>

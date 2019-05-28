@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Jumping number is the number that All adjacent digits in it differ by 1.
+
+Task
+Given a number, Find if it is Jumping or not .
+
+Notes
+Number passed is always Positive .
+Return the result as String .
+The difference between ‘9’ and ‘0’ is not considered as 1 .
+All single digit numbers are considered as Jumping numbers.
+
+Examples
+3- jumpingNumber(23) ==> return "Jumping!!"
+Explanation:
+Adjacent digits differ by 1
+4- jumpingNumber(556847) ==> return "Not!!"
+Explanation:
+Adjacent digits don't differ by 1
+5- jumpingNumber(4343456) ==> return "Jumping!!"
+Explanation:
+Adjacent digits differ by 1
+
+<script>
+    function jumpingNumb(number) {
+        if (number < 10) {
+            return "Jumping!!"
+        } else {
+            var devideOfNumb = [];
+            var strOfNumb = String(number);
+            var differenceArray = [];
+            var difference;
+            for (var i = 0; i < strOfNumb.length; i++) {
+                devideOfNumb.push(strOfNumb[i]);
+            }
+            console.log(devideOfNumb);
+            for (var j = 0; j < devideOfNumb.length - 1; j++) {
+               difference = Number(devideOfNumb[j] - devideOfNumb[j + 1]);
+                differenceArray.push(difference);
+            }
+            console.log(differenceArray);
+            for (var k = 0; k < differenceArray.length; k++) {
+                if (differenceArray[k] !== 1 && differenceArray[k] !== -1) {
+                    return "Not";
+                }
+            }
+            return "Jumping!!";
+        }
+    }
+
+</script>
+<!--<script src="js/jquery-2.2.3.min.js"></script>-->
+</body>
+</html>

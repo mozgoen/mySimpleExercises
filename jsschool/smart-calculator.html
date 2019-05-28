@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+</body>
+
+<script>
+    class SmartCalculator {
+        constructor(initialValue) {
+            this.result = initialValue;
+        }
+
+        add(number) {
+            this.result += " + " + number;
+            return this;
+        }
+
+        subtract(number) {
+            this.result += " - " + number;
+            return this;
+        }
+
+        multiply(number) {
+            this.result += " * " + number;
+            return this;
+        }
+
+        devide(number) {
+            this.result += " / " + number;
+            return this;
+        }
+
+        pow(number) {
+            this.result += "**" + number;
+            return this;
+        }
+
+        valueOf() {
+            return eval(this.result);
+        }
+    }
+
+
+
+    const calculator = new SmartCalculator(10);
+
+    const value = calculator
+        .multiply(2)
+        .pow(2)
+        .subtract(95)
+        .subtract(56)
+        .pow(2)
+        .pow(2)
+        .pow(1)
+        .multiply(1);
+
+
+
+</script>
+</html>

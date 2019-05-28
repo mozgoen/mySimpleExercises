@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Вам предоставляется узел, который является началом связанного списка. Этот список всегда содержит хвост и цикл.
+Ваша цель - определить длину цикла.
+Например, на следующем рисунке размер хвоста равен 3, а размер петли - 11.
+node.getNext ()
+node.next
+Примечание: НЕ мутируйте узлы!
+Благодаря шадчнев я побил все методы из класса Hash.
+Не пропустите статью dmitry в обсуждении после того, как вы передадите Ката!
+Используйте метод getNext или свойство next, чтобы получить следующий узел.
+
+РЕШЕНИЕ
+Стандартный алгоритм, решающий данную задачу с указанными ограничениями основывается на двух указателях (p1 и p2), пускаемых по списку с шагом 1 и 2 элемента. Если в какой-то момент времени указатель p2 догонит p1 => цикл существует. Описание алгоритма и его доказательство рассматривается много где.
+https://en.wikipedia.org/wiki/Cycle_detection#Floyd's_Tortoise_and_Hare
+
+Проверяем в массиве нод нету ли текущей ноды в массиве нод.
+Берешь текущ ноду, закидываем в массив.
+если есть - эта нода начало и конец круга.если нету значит не начало и просто закидываем в массив и цикл запускается заново.
+
+
+<script>
+
+
+
+
+    function loop_size(node){
+        let count = 0;
+        let arr = [];
+        let index;
+
+        function isNodeInArr(arr, node) {
+            if (arr.indexOf(node) !== -1) {
+                index = arr.indexOf(node);
+                return true;
+            }
+            return false;
+        }
+
+        while (!isNodeInArr(arr, node)) {
+           arr.push(node);
+           node = node.next;
+            count++;
+        }
+
+        return count - index;
+    }
+
+
+
+
+    function loop_size2(node){
+        var turtle = node;
+        var rabbit = node;
+
+        // Find a point in the loop.  Any point will do!
+        // Since the rabbit moves faster than the turtle
+        // and the kata guarantees a loop, the rabbit will
+        // eventually catch up with the turtle.
+        do {
+            turtle = turtle.getNext();
+            rabbit = rabbit.getNext().getNext();
+        }
+        while (turtle != rabbit);
+
+        // The turtle and rabbit are now on the same node,
+        // but we know that node is in a loop.  So now we
+        // keep the turtle motionless and move the rabbit
+        // until it finds the turtle again, counting the
+        // nodes the rabbit visits in the mean time.
+        var count = 0;
+        do {
+            ++count;
+            rabbit = rabbit.getNext();
+        }
+        while (turtle != rabbit);
+
+        // voila
+        return count;
+    }
+
+
+
+</script>
+
+</body>
+</html>

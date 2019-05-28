@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    'use strict';
+    class Sorter {
+        constructor() {
+            this.arrayOfElems = [];
+            this.comparator = null;
+        }
+
+        add(element) {
+            this.arrayOfElems.push(element);
+        }
+
+        at(index) {
+            return this.arrayOfElems[index];
+        }
+
+        get length() {
+            return this.arrayOfElems.length;
+        }
+
+        toArray() {
+            return this.arrayOfElems;
+        }
+
+        sort(indices) {
+            if (indices.length === 1) {
+                return;
+            }
+            indices.sort();
+            for (let i = 0; i < indices.length - 1; i++) {
+                for (let j = 0; j < indices.length - 1; j++) {
+                    this.swap(indices[j], indices[j + 1]);
+                }
+            }
+        }
+
+        setComparator(compareFunction) {
+            this.comparator = compareFunction;
+        }
+        swap(index0, index1) {
+            if (this.comparator) {
+                if (this.comparator(this.arrayOfElems[index0], this.arrayOfElems[index1])) {
+                    let swap = this.arrayOfElems[index0];
+                    this.arrayOfElems[index0] = this.arrayOfElems[index1];
+                    this.arrayOfElems[index1] = swap;
+                }
+            } else {
+                if (this.arrayOfElems[index0] > this.arrayOfElems[index1]) {
+                    let swap = this.arrayOfElems[index0];
+                    this.arrayOfElems[index0] = this.arrayOfElems[index1];
+                    this.arrayOfElems[index1] = swap;
+                }
+            }
+
+        }
+    }
+
+    const AGE_COMPARATOR = (left, right) => left.age - right.age;
+    const REVERSE_COMPARATOR = (left, right) => right - left;
+    const STRINGIFY_COMPARATOR = (left, right) => JSON.stringify(left, null, 2).length - JSON.stringify(right, null, 2).length;
+
+    let sorter = new Sorter();
+
+
+    sorter.add(6);
+    sorter.add(5);
+    sorter.add(20);
+    sorter.add(10);
+    sorter.add(100);
+
+    sorter.setComparator(REVERSE_COMPARATOR);
+    sorter.sort([1, 0]);
+
+    console.log(sorter.toArray());
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<script>
+    const createIncrementer = () => {
+        let obj = {
+            from: 1,
+            to: 11,
+
+            [Symbol.iterator]() {
+                return this;
+            },
+
+            next() {
+                if (this.current === undefined) {
+                    this.current = this.from;
+                }
+
+                if (this.current < this.to) {
+                    return {
+                        done: false,
+                        value: this.current++
+                    };
+                } else {
+                    delete this.current;
+                    return {
+                        done: true
+                    };
+                }
+
+            }
+        }
+
+        return obj
+    };
+
+    const inc = createIncrementer();
+
+    console.log(inc.next().value, 1);
+    console.log(inc.next().value, 2);
+    console.log(inc.next().value, 3);
+
+    let current = 3;
+    for (let n of inc) {
+        current++;
+
+        console.log(current, n);
+        if (n > 10) break;
+    }
+
+
+
+</script>
+
+</body>
+</html>

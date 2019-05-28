@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+Допустим, что по url http://любой_домен/filter?size=M&color=1,2&manufacturer=aaa,eee находится страница, на которой есть такие поля:
+радио для size (значения - S, M, L)
+несколько чекбоксов для color (значения - 1, 2, 3, 4, 5)
+мультиселект (select multiple) для manufacturer (значения - "aaa", "b&c", "ddd", "eee")
+чекбокс "распродажа" (значение - 1)
+Допустим также, что сервер при генерации html ни одно из полей не заполняет, то есть радио не выбран, чекбоксы пустые и т.д.
+
+Задача: набросать самую элементарную разметку для указанных инпутов и написать скрипт, который
+при загрузке страницы разберёт значения фильтров из url и расставит их по соответствующим полям
+при изменении состояния в любом инпуте, кроме "распродажа", выведет в консоль аналогичный приведённому в условии url с актуальными значениями фильтров
+
+
+<div class="radio-block">
+    <input type="radio" id="sizeS" name="size" value="S">
+    <label for="sizeS">S</label>
+    <input type="radio" id="sizeM" name="size" value="M">
+    <label for="sizeM">M</label>
+    <input type="radio" id="sizeL" name="size" value="L">
+    <label for="sizeL">L</label>
+</div>
+<div class="checkbox-block">
+    <input type="checkbox" id="color1" name="color" value="1"/>
+    <label for="color1">1</label>
+    <input type="checkbox" id="color2" name="color" value="2"/>
+    <label for="color2">2</label>
+    <input type="checkbox" id="color3" name="color" value="3"/>
+    <label for="color3">3</label>
+    <input type="checkbox" id="color4" name="color" value="4"/>
+    <label for="color4">4</label>
+    <input type="checkbox" id="color5" name="color" value="5"/>
+    <label for="color5">5</label>
+</div>
+<div class="multiple-block">
+    <select multiple id="manufacturer" name="manufacturer">
+        <option value="aaa">aaa</option>
+        <option value="b&c">b&c</option>
+        <option value="ddd">ddd</option>
+        <option value="eee">eee</option>
+    </select>
+</div>
+<div class="checkbox-sale-block">
+    <input type="checkbox" id="sale" name="sale" value="1"/>
+    <label for="sale">1</label>
+</div>
+
+<script>
+    function showLocation() {
+        let getUrl = window.location.search;
+        console.log(getUrl);
+        let arrOfParams = getUrl.split('&');
+        console.log(arrOfParams);
+        let objectOfParams = {};
+        let key;
+        let value;
+        for (let i = 0; i < arrOfParams.length; i++) {
+            let arr = arrOfParams[i].split('=');
+            key = arr[0];
+            value = arr[1];
+            objectOfParams[key] = value;
+        }
+        console.log(objectOfParams);
+        for (let key in objectOfParams) {
+            let arr1 = objectOfParams[key].split(",");
+            objectOfParams[key] = arr1;
+        }
+        console.log(objectOfParams);
+    }
+
+</script>
+
+</body>
+</html>

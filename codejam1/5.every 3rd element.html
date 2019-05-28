@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+5) Take every 3rd element of array
+
+<script>
+    let arr5 = [3,2,1,33,44,55,66,55,33,101];
+
+    let every3rdElem = arr => {
+        let result = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (i % 3 === 0) {
+                result.push(arr[i]);
+            }
+        }
+        return result;
+    };
+    let every3rd = every3rdElem(arr5);
+
+//with forEach
+
+    let every3rdElem2 = arr => {
+        let result = [];
+        arr.forEach(function (element, index) {
+            if (index % 3 === 0) {
+                result.push(element);
+            }
+        });
+        return result;
+    };
+    let every3rd2 = every3rdElem2(arr5);
+
+//    with filter
+
+    let every3rdElem3 = arr => {
+        const result = arr.filter((element, index) => {
+            return index % 3 === 0;
+        });
+        return result;
+    };
+    let every3rd3 = every3rdElem3(arr5);
+
+
+
+
+
+</script>
+
+</body>
+</html>

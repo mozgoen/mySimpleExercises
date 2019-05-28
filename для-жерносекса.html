@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .red {color: red;}
+    </style>
+</head>
+<body>
+Задача: написать скрипт, который при вводе данных в поле будет добавлять ему класс red, если его текущее значение поля не совпадает с изначальным, и удалять этот класс, если значения совпадают
+
+<input type="text" name="name" class="js_name" value="Xxxx">
+
+
+
+<script>
+    let getInput = document.getElementsByClassName("js_name")[0];
+    let valueOfInput = getInput.value;
+    getInput.onkeydown = function () {
+        setTimeout(function () {
+            console.log({valueOfInput}, getInput.value, this.value);
+            if (getInput.value !== valueOfInput) {
+                getInput.classList.add("red");
+            } else {
+                getInput.classList.remove("red");
+            }
+        },0)
+    }
+
+</script>
+</body>
+</html>

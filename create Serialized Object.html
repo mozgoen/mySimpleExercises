@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+одно из применений JSON.parse(JSON.stringify(myObject))
+заключается в создании клона исходного объекта.
+
+</body>
+
+<script>
+    const createSerializedObject = () => {
+        let object = null;
+        return object;
+    };
+    const object = createSerializedObject();
+
+    console.log(typeof object, 'object');
+    console.log(JSON.parse(JSON.stringify(object)), object);
+
+
+
+</script>
+</html>

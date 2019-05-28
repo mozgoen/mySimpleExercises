@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+10) Sum of the five biggest numbers
+503
+
+<script>
+    let arr10 = [2,-3,-5,10, 14, -20, -50, 100, -200, 42, -11, 200, 142, 19];
+    
+    let sumOf5BigNum = (arr) => {
+        arr.sort((a, b) => {return a - b});  // сортируем массив как числа
+
+        let arr2 = arr.slice(-5); //вырезали 5 чисел с конца в новый массив
+
+        let result = arr2.reduce(function (sum, i) {
+           return sum + i;
+        },0);
+        return result;
+    };
+    let result = sumOf5BigNum(arr10);
+    
+
+
+
+</script>
+</body>
+</html>

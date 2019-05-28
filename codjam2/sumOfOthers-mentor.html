@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Реализуйте функцию sumOfOther, которая получает на вход массив, например, [2, 3, 4, 1], а возращает, [8, 7, 6, 9]. Входной массив - одномерный, целочисленный, произвольной длины. В результирующем массиве каждый элемент по индексу i - это сумма остальных элементов оригинального массива.
+
+
+
+<!--У этого решения сложность `O(n)`. Обращаю внимание, что в reduce желательно всегда задавать InitialValue вторым аргументом.-->
+<!--Так же нам не надо было всегда заново считать сумму поочереди выкидывая каждый элемент, так как в таком случае сложность станет `O(n^2)`.-->
+<script>
+  let arr1 = [2, 3, 4, 1];
+
+  let sumOfOther = function(aNumbers) {
+    let iSumTotal = aNumbers.reduce((iSum, iCur) => iSum + iCur, 0);
+    let aSumOther = aNumbers.map(iCur => iSumTotal - iCur);
+    return aSumOther;
+  }
+
+</script>
+
+</body>
+</html>

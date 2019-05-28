@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+Напишите код, который отсортирует массив объектов people по полю age.
+
+<script>
+    let vasya = { name: "Вася", age: 23 };
+    let masha = { name: "Маша", age: 18 };
+    let vovochka = { name: "Вовочка", age: 6 };
+
+    let people = [ vasya , masha , vovochka ];
+
+//    польз функция которая сравнивает два объекта а точнее их свойства age.
+    function compareFunc(objA, objB) {
+        return objA.age - objB.age;
+    }
+    people.sort(compareFunc);
+//    выведем список имен после сортировки
+    for (let i = 0; i < people.length; i++) {
+        console.log(people[i].name);
+    }
+
+</script>
+
+</body>
+</html>

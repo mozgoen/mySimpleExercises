@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+12) Check if parentheses are balanced
+
+
+<script>
+    let str1 = ")()("; //false
+    let str2 = "(())"; //true
+    let str3 = 'arg.reduce((xs, x) => 10 * xs + x)('; //false
+
+    let balancedParentheses = str => {
+        let parentheses = "[]{}()";
+        let arr = [];
+        let indexInParentheses;
+
+        for (let i = 0; i < str.length; i++) {
+            let current = str[i];
+            indexInParentheses = parentheses.indexOf(current);
+
+            if (indexInParentheses === -1) {
+                continue;
+            }
+
+// если открывающаяся скобка
+            if (indexInParentheses % 2 === 0) {
+                // добавляем в массив индекс закрывающей скобки для текущей
+                arr.push(indexInParentheses + 1);
+                console.log(arr);
+            } else { //если закрывающаяся скобка
+                if (arr.length === 0 || arr.pop() !== indexInParentheses) {
+                    return false
+                }
+            }
+
+        }
+        console.log(arr);
+        return arr.length === 0;
+    }
+
+
+</script>
+
+</body>
+</html>

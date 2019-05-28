@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+Методы call/apply вызывают функцию с заданным контекстом и аргументами.!!!!!!!!!!!!!!!!!!!!!!
+
+Функция сама по себе не запоминает контекст выполнения. Чтобы гарантировать правильный контекст для вызова obj.func(), нужно использовать функцию-обёртку, задать её через анонимную функцию:
+
+setTimeout(function() {
+obj.func();
+})
+…Либо использовать bind:
+
+setTimeout(obj.func.bind(obj));
+Вызов bind часто используют для привязки функции к контексту, чтобы затем присвоить её в обычную переменную и вызывать уже без явного указания объекта.
+
+Вызов bind также позволяет фиксировать первые аргументы функции («каррировать» её), и таким образом из общей функции получить её «частные» варианты – чтобы использовать их многократно без повтора одних и тех же аргументов каждый раз.
+
+
+
+А bind не вызывает функцию. Он только возвращает «обёртку», которую мы можем вызвать позже, и которая передаст вызов в исходную функцию, с привязанным контекстом.
+
+Карринг (currying) или каррирование – термин функционального программирования, который означает создание новой функции путём фиксирования аргументов существующей.
+
+<script>
+//    let user = {
+//        firstName: "Вася",
+//        sayHi: function() {
+//            alert( this.firstName );
+//        }
+//    };
+//
+//    setTimeout(user.sayHi(), 5000); // undefined (не Вася!)
+
+//function bind(func, context) {
+//    return function() {
+//        return func.apply(context, arguments);
+//    };
+//}
+//
+//let user = {
+//    firstName: "Вася",
+//    sayHi: function(who) {
+//        alert( this.firstName + "," + who);
+//    }
+//};
+////setTimeout(bind(user.sayHi, user), 1000);
+//let sayHi = bind(user.sayHi, user);
+//sayHi("Петя");
+
+//    function f(a, b) {
+//        alert( this );
+//        alert( a + b );
+//    }
+//    let g = f.bind("Context");
+//    g(1, 5);
+
+    let user = {
+        firstName: "Вася",
+        sayHi: function() {
+            alert( this.firstName );
+        }
+    };
+//    setTimeout(user.sayHi.bind(user), 1000);
+
+    function mul(a, b) {
+        return a * b;
+    };
+// double умножает только на два
+    let double = mul.bind(null, 2); // контекст фиксируем null, он не используется
+//    alert( double(3) ); // = mul(2, 3) = 6 При вызове double будет передавать свои аргументы исходной функции mul после тех, которые указаны в bind, то есть в данном случае после зафиксированного первого аргумента 2.
+
+    function ask(question, answer, ok, fail) {
+        let result = prompt(question, '');
+        if (result.toLowerCase() === answer.toLowerCase()){
+            ok();
+        } else {
+            fail();
+        }
+    }
+//    Её назначение – задать вопрос question и, если ответ совпадёт с answer, то запустить функцию ok(), а иначе – функцию fail().
+//    ask("Выпустить птичку?", "да", fly, die);
+//
+//    function fly() {
+//        alert( 'улетела :)' );
+//    }
+//
+//    function die() {
+//        alert( 'птичку жалко :(' );
+//    }
+
+
+
+
+
+</script>
+
+</body>
+</html>

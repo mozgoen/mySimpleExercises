@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+describe('makeExchange function', () => {
+it('should return ERROR object if the currency more than 10000', () => {
+assert.deepEqual(makeExchange(10001), {error: "You are rich, my friend! We don't have so much coins for exchange"});
+});
+
+it('should return correct object if the currency less than or equal to 1000', () => {
+assert.deepEqual(makeExchange(1000), {"H": 20});
+assert.deepEqual(makeExchange(9999), {"H":199,"Q":1,"D":2,"P":4});
+});
+
+it('should return empty object if passed currency in is 0', () => {
+assert.deepEqual(makeExchange(0), {});
+});
+
+it('should return amount of half-dollars correctly', () => {
+assert.deepEqual(makeExchange(50), {"H":1});
+assert.deepEqual(makeExchange(500), {"H":10});
+assert.deepEqual(makeExchange(102), {"H":2,"P":2});
+});
+
+it('should return amount of half-dollars correctly', () => {
+assert.deepEqual(makeExchange(50), {"H":1});
+assert.deepEqual(makeExchange(500), {"H":10});
+assert.deepEqual(makeExchange(102), {"H":2,"P":2});
+});
+
+it('should return amount of quarters correctly', () => {
+assert.deepEqual(makeExchange(25), {"Q":1});
+assert.deepEqual(makeExchange(75), {"H":1,"Q":1});
+assert.deepEqual(makeExchange(26), {"Q":1,"P":1});
+});
+it('should return amount of trapped water correctly 11', () => {
+assert.deepEqual(makeExchange(-1000), {});
+
+Coins used will be half-dollars, quarters, dimes, nickels,
+and pennies, worth 50¢, 25¢, 10¢, 5¢ and 1¢, respectively.
+
+makeExchange(0)  --> {}
+makeExchange(1)  --> {"P":1}
+makeExchange(43) --> {"Q":1,"D":1,"N":1,"P":3}
+makeExchange(91) --> {"H":1,"Q":1,"D":1,"N":1,"P":1}
+makeExchange(9999999)  --> {error: "You are rich, my friend! We don't have so much coins for exchange"}
+<script>
+
+    function makeExchange(currency) {
+        let objectOfCurrency = {};
+
+        if (currency < 1) {
+            return objectOfCurrency;
+        }
+
+        if (currency > 10000) {
+            objectOfCurrency.error = "You are rich, my friend! We don't have so much coins for exchange";
+            return objectOfCurrency;
+
+        }
+
+        let firstDivision = currency / 50;
+        let moduloOne = 0;
+
+
+        if (firstDivision >= 1) {
+            objectOfCurrency["H"] = Math.floor(firstDivision);
+            moduloOne = Math.round(currency - 50 * objectOfCurrency["H"]);
+        } else {
+            moduloOne = currency;
+        }
+
+        let secondDivision = moduloOne / 25;
+        let moduloTwo = 0;
+
+        if (secondDivision >= 1) {
+            objectOfCurrency["Q"] = Math.floor(secondDivision);
+            moduloTwo = Math.round(moduloOne - 25 * objectOfCurrency["Q"]);
+        } else {
+            moduloTwo = moduloOne;
+        }
+
+        let thirdDivision = moduloTwo / 10;
+        let moduloThree = 0;
+
+        if (thirdDivision >= 1) {
+            objectOfCurrency["D"] = Math.floor(thirdDivision);
+            moduloThree = Math.round(moduloTwo - 10 * objectOfCurrency["D"]);
+        } else {
+            moduloThree = moduloTwo;
+        }
+
+        let fourthDivision = moduloThree / 5;
+        let moduloFour = 0;
+
+        if (fourthDivision >= 1) {
+            objectOfCurrency["N"] = Math.floor(fourthDivision);
+            moduloFour = Math.round(moduloThree - 5 * objectOfCurrency["N"]);
+        } else {
+            moduloFour = moduloThree;
+        }
+
+        if (moduloFour !== 0) {
+            objectOfCurrency["P"] = Math.floor(moduloFour);
+        }
+
+        return objectOfCurrency;
+
+    }
+
+
+
+</script>
+
+</body>
+</html>

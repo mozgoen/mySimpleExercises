@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+Ваша задача - написать функцию maskify, которая изменяет все, кроме последних четырех символов, на «#».
+
+Примеры
+maskify ("4556364607935616") == "############ 5616"
+maskify ("64607935616") == "####### 5616"
+maskify ("1") == "1"
+maskify ("") == ""
+
+<script>
+    let myCardSimbl = "64607935616";
+
+    function maskify(str) {
+        if (str.length > 4) {
+            let strChange = str.substring(0, str.length - 4);
+            let arrOfStrChange = Array.from(strChange);
+            let strNoChange = str.substring(str.length - 4);
+            for (let i = 0; i < arrOfStrChange.length; i++) {
+                arrOfStrChange[i] = "#";
+            }
+            let resultStrChange;
+            resultStrChange = arrOfStrChange.join("");
+            let resultStr; resultStr = resultStrChange + strNoChange;
+            return resultStr;
+        } else {
+            return str;
+        }
+
+
+    }
+
+
+
+</script>
+</body>
+</html>

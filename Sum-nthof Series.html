@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Ваша задача - написать функцию, которая возвращает сумму следующих рядов до n-го члена (параметра).
+
+Серия: 1 + 1/4 + 1/7 + 1/10 + 1/13 + 1/16 + ...
+Правила:
+Вам нужно округлить ответ до 2 десятичных знаков и вернуть его как String.
+Если заданное значение равно 0, оно должно вернуть 0,00
+В качестве аргументов вам будут даны только натуральные числа.
+
+Примеры:
+SeriesSum (1) => 1 = "1.00"
+SeriesSum (2) => 1 + 1/4 = "1,25"
+SeriesSum (5) => 1 + 1/4 + 1/7 + 1/10 + 1/13 = "1.57"
+
+
+<script>
+    function seriesSum(amount) {
+        let nextOne;
+        let sum = 1;
+        let current = 4;
+        let strOfSum = "";
+        if (amount === 1) {
+            strOfSum = "1.00";
+        }
+        if (amount > 1) {
+            for (let i = 1; i < amount; i++) {
+                nextOne = 1 / current;
+                sum += nextOne;
+                current = current + 3;
+            }
+            sum = Math.round(sum*100)/100;
+            strOfSum = String(sum);
+        }
+        return strOfSum;
+
+    }
+
+
+
+</script>
+</body>
+</html>

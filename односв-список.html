@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+Односвязный список – это структура данных, которая состоит из элементов, каждый из которых хранит ссылку на следующий. Последний элемент может не иметь ссылки, либо она равна null.
+
+Например, объект ниже задаёт односвязный список, в next хранится ссылка на следующий элемент:
+
+var list = {
+value: 1,
+next: {
+value: 2,
+next: {
+value: 3,
+next: {
+value: 4,
+next: null
+}
+}
+}
+};
+
+Альтернативный способ создания:
+
+var list = { value: 1 };
+list.next = { value: 2 };
+list.next.next = { value: 3 };
+list.next.next.next = { value: 4 };
+
+Такая структура данных интересна тем, что можно очень быстро разбить список на части,
+объединить списки, удалить или добавить элемент в любое место, включая начало.
+При использовании массива такие действия требуют обширных перенумерований.
+
+Задачи:
+
+Напишите функцию printList(list), которая выводит элементы списка по очереди, при помощи цикла.
+Напишите функцию printList(list) при помощи рекурсии.
+Напишите функцию printReverseList(list), которая выводит элементы списка в обратном
+порядке, при помощи рекурсии. Для списка выше она должна выводить 4,3,2,1
+Сделайте вариант printReverseList(list), использующий не рекурсию, а цикл.
+Как лучше – с рекурсией или без?
+
+<script>
+    let list1 = {
+        value: 1,
+        next: {
+            value: 2,
+            next: {
+                value: 3,
+                next: {
+                    value: 4,
+                    next: null
+                }
+            }
+        }
+    };
+//    function printList(list) {
+//        let tmp = list;
+//
+//        while (tmp) {
+//            console.log( tmp.value );
+//            tmp = tmp.next;
+//        }
+//
+//    }
+//    Обратите внимание, что для прохода по списку используется временная переменная tmp, а не list. Можно было бы и бегать по списку, используя входной параметр функции…Но при этом мы в будущем не сможем расширить функцию и сделать со списком что-то ещё, ведь после окончания цикла начало списка уже нигде не хранится.
+
+//    так же задача но с РЕКУРСИЕЙ
+    function printList(list) {
+        console.log(list.value);
+        if (list.next) {
+            printList(list.next);
+        }
+
+    }
+
+//обратный вывод с рекурсией
+//    function printReverseList(list) {
+//        if (list.next) {
+//            printReverseList(list.next);
+//        }
+//        console.log(list.value);
+//    }
+
+//    обратный вывод без рекурсии с помощью цикла
+    function printReverseList(list) {
+            let tmp = list;
+            let arr = [];
+
+            while (tmp) {
+                arr.push(tmp.value);
+                tmp = tmp.next;
+            }
+            for (let i = arr.length - 1; i >= 0; i--) {
+                console.log(arr[i]);
+            }
+
+        }
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

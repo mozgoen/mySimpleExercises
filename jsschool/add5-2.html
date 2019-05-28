@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+const config1 = [['(', ')']];
+const config2 = [['(', ')'], ['[', ']']];
+const config3 = [['(', ')'], ['[', ']'], ['{', '}']];
+const config4 = [['|', '|']];
+const config5 = [['(', ')'], ['|', '|']];
+const config6 = [['1', '2'], ['3', '4'], ['5', '6'], ['7', '7'], ['8', '8']];
+const config7 = [['(', ')'], ['[', ']'], ['{', '}'], ['|', '|']];
+
+it('should check if brackets sequence is correct 1', () => {
+assert.equal(check('()', config1), true);
+});
+
+
+<script>
+    function check(str, bracketsConfig) {
+        let tempStr = str;
+
+        for (let strKey = tempStr.length; strKey >= 0; strKey--) {
+            for (let bracketKey = 0; bracketKey < bracketsConfig.length; bracketKey++) {
+                if (tempStr[strKey] === bracketsConfig[bracketKey][0]) {
+                    tempStr = tempStr.replace(bracketsConfig[bracketKey].join(''), '');
+                }
+
+
+
+            }
+        }
+
+        return tempStr === '';
+    }
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+1) Return the first element of the array
+2) Return the sum of positive values
+3) Return values that are greater than 42
+4) Return original array concatenated with its mirror
+
+<script>
+    const arr1 = [1, -2, -6, 3, 7];
+    let firstElem = arr1[0];
+//    let firstElem2 = arr1.shift();
+
+    function findSumOfPositive(arr) {
+        let sumOfPositive = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] > 0) {
+                sumOfPositive += arr[i];
+            }
+        }
+        return sumOfPositive;
+    }
+
+    let sumOfPositive = findSumOfPositive(arr1);
+
+    let sumOfPositive2 = arr1.reduce(function(sum, i) {
+        if (i > 0) {
+            sum += i;
+        }
+        return sum
+    }, 0);
+
+
+    let arr3 = [40, 41, 42, 43, 34, 24, 100];
+
+    function foundNumMore42(arr) {
+        let result = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] > 42) {
+                result.push(arr[i]);
+            }
+        }
+        return result;
+    }
+//    стрелочная функция ПРИМЕРЫ АНАЛОГИИ
+//    let inc = x => x+1;
+//    let inc = function(x) { return x + 1; };
+//    let sum = (a,b) => a + b;
+//    let sorted = arr.sort( (a,b) => a - b );
+
+    let foundNumMore42_2 = arr => {
+        let result = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] > 42) {
+                result.push(arr[i]);
+            }
+        }
+        return result;
+    };
+
+    let arrOfNumMore42_1 = foundNumMore42(arr3);
+    let arrOfNumMore42_2 = foundNumMore42_2(arr3);
+
+    const arrOfNumMore42 = arr3.filter(i => i > 42);
+
+    let arr4 = [10, 25, 35, 50];
+    let arr4_2 = arr4.slice(); //копия массива
+    let mirror = arr4.concat(arr4_2.reverse());
+
+
+</script>
+
+</body>
+</html>

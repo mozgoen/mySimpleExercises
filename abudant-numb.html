@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Обильное число или избыточное число - это число, для которого сумма его собственных делителей больше самого числа.
+
+Целое число 12 является первым обильным числом. Его собственные делители равны 1, 2, 3, 4 и 6 в общей сложности 16 (> 12).
+
+Напишите ф-ю abundantNumber(num)которая returns true if num is abundant, false if not.
+
+<script>
+    function abundantNumber(num) {
+        var count = num;
+        var resultArr = [];
+        while (count > 0) {
+            count--;
+            if (num % count === 0) {
+                resultArr.push(count);
+            }
+        }
+        console.log(resultArr);
+        var resultSum = 0;
+        for (var i = 0; i < resultArr.length; i++) {
+            resultSum += resultArr[i];
+        }
+        console.log(resultSum);
+        if (resultSum > num) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+//    var number1 = 30;
+//    abundantNumber(number1);
+
+
+</script>
+<!--<script src="js/jquery-2.2.3.min.js"></script>-->
+</body>
+</html>

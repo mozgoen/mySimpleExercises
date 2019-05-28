@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Сортировка подарочного кода
+Напишите функцию sortGiftCode / sort_gift_code / SortGiftCode, которая принимает строку, содержащую до 26 уникальных алфавитных символов, и возвращает строку, содержащую те же символы в алфавитном порядке.
+
+Примеры:
+sortGiftCode ('abcdef'); // => возвращает 'abcdef'
+sortGiftCode ('pqksuvy'); // => возвращает 'kpqsuvy'
+sortGiftCode ('zyxwvutsrqponmlkjihgfedcba'); // => возвращает 'abcdefghijklmnopqrstuvwxyz'
+
+<script>
+    let myStr = "pqksuvy";
+
+    function sortGiftCode(str) {
+        //        строку в массив
+        let arrOfStr = Array.from(str);
+        for (let i = 0; i < arrOfStr.length; i++) {
+            let min = i;
+            for (let j = i + 1; j < arrOfStr.length; j++) {
+                if (arrOfStr[j] < arrOfStr[min]) {
+                    min = j;
+                }
+            }
+
+            let swap = arrOfStr[min];
+            arrOfStr[min] = arrOfStr[i];
+            arrOfStr[i] = swap;
+        }
+
+        //        из массива в строку
+        let newStr = "";
+        newStr = arrOfStr.join("");
+        return newStr;
+
+    }
+
+
+
+</script>
+</body>
+</html>

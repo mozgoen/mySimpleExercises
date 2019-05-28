@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Disarium - это номер, в котором сумма его цифр, приведенных в действие с их соответствующими позициями, равна самому числу.
+
+задача
+Учитывая число, найдите, является ли это Disarium или нет.
+
+Пропущенный номер всегда положительный.
+Вернуть результат как String
+Пример вывода
+disariumNumber (89) ==> return "Disarium !!"
+Since , 8<sup>1</sup> + 9<sup>2</sup> = 89 , thus output is "Disarium !!"
+
+
+<script>
+//    function disariumNumber (number) {
+//        if (number > 0) {
+//            let strOfNum = String(number);
+//            let sumOfNum;
+//            let result;
+//            let sum = 0;
+//            for (let i = 0; i < strOfNum.length; i++) {
+//               sumOfNum = strOfNum.substring(i, i+1);
+//               result = Number(Math.pow(sumOfNum, i+1));
+//               sum += result;
+//            }
+//            if (sum === number) {
+//                return "Disarium !!"
+//            } else {return "Not !!"}
+//        }
+//    }
+
+    function disariumNumber (n) {
+            let strOfNum = String(n);
+            let sumOfNum;
+            let result;
+            let sum = 0;
+            for (let i = 0; i < strOfNum.length; i++) {
+                sumOfNum = strOfNum.substring(i, i+1);
+                result = Number(Math.pow(sumOfNum, i+1));
+                sum += result;
+            }
+            if (sum === n) {
+                return "Disarium !!"
+            } else {return "Not !!"}
+    }
+
+</script>
+<!--<script src="js/jquery-2.2.3.min.js"></script>-->
+</body>
+</html>

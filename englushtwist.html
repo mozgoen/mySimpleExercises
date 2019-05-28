@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+Вам будет предоставлен список строк, стенограмма английского матча Shiritori. Ваша задача - выяснить, закончилась ли игра раньше и вернет список, содержащий всю допустимую строку до ошибки. Если список пуст, верните пустой список. Если один из элементов является пустой строкой, это недопустимо и должно быть обработано.
+
+Examples:
+All elements valid:
+The array {"dog","goose","elephant","tiger","rhino","orc","cat"}
+should return {"dog","goose","elephant","tiger","rhino","orc","cat"}
+
+An invalid element at index 2:
+The array {"dog","goose","tiger","cat", "elephant","rhino","orc"}
+should return ("dog","goose") since goose ends in 'e' and tiger starts with 't'
+
+<script>
+    var arr1 = ["dog","goose","elephant","tiger","rhino","orc","cat"];
+    function validArr(arr) {
+        var resultArr = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] === undefined || arr[i+1] === undefined) {
+                resultArr.push(arr[i]);
+                break;
+            }
+           if (arr[i].slice(-1) === arr[i+1].substring(0,1)) {
+                resultArr.push(arr[i]);
+                console.log(arr[i].slice(-1), arr[i+1].substring(0,1));
+           } else {
+               resultArr.push(arr[i]);
+               break;
+           }
+
+        }
+        return resultArr;
+    }
+    console.log(arr1);
+    var result =  validArr(arr1);
+    console.log(result);
+
+
+</script>
+<!--<script src="js/jquery-2.2.3.min.js"></script>-->
+</body>
+</html>
